@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips on Yury Fedorov</title>
+    <link>https://orlangure.github.io/tags/tips/</link>
+    <description>Recent content in tips on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Aug 2018 21:05:26 +0300</lastBuildDate>
+    
+	<atom:link href="https://orlangure.github.io/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Don&#39;t ask me, ask the code</title>
+      <link>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</link>
+      <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
+      <description>How many times did you find yourself in an argument about whether or not a certain detail in some programming language or framework was implemented in a certain way? I&amp;rsquo;m talking about questions like these ones:
+ Can a JS promise be rejected after resolution?</description>
+    </item>
+    
+    <item>
+      <title>Vim: you are holding it wrong</title>
+      <link>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</link>
+      <pubDate>Tue, 17 Jul 2018 19:03:07 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</guid>
+      <description>I have a friend who happens to be a huge fan of Apple products. He also hates Vim. He has quite a few stories about how awful Vim is, and how many problems it causes.
+A few weeks ago he texted me about a weird problem he had with editing a file on a remote server using Vim.</description>
+    </item>
+    
+  </channel>
+</rss>

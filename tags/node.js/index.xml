@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>node.js on Yury Fedorov</title>
+    <link>https://orlangure.github.io/tags/node.js/</link>
+    <description>Recent content in node.js on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Aug 2018 21:05:26 +0300</lastBuildDate>
+    
+	<atom:link href="https://orlangure.github.io/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Don&#39;t ask me, ask the code</title>
+      <link>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</link>
+      <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
+      <description>How many times did you find yourself in an argument about whether or not a certain detail in some programming language or framework was implemented in a certain way? I&amp;rsquo;m talking about questions like these ones:
+ Can a JS promise be rejected after resolution?</description>
+    </item>
+    
+    <item>
+      <title>Moving from PhantomJS to Chrome</title>
+      <link>https://orlangure.github.io/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</link>
+      <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</guid>
+      <description>We used PhantomJS for automated UI testing for some time. It successfully helped us to be sure that our Polymer-component based pages behaved correctly. At least that&amp;rsquo;s what we thought.
+We used Mocha for testing with mocha-phantomjs package. Our tests looked pretty much the same: we created some components, triggered events and evaluated the results.</description>
+    </item>
+    
+  </channel>
+</rss>

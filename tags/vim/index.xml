@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on Yury Fedorov</title>
+    <link>https://orlangure.github.io/tags/vim/</link>
+    <description>Recent content in vim on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Jul 2018 19:03:07 +0300</lastBuildDate>
+    
+	<atom:link href="https://orlangure.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vim: you are holding it wrong</title>
+      <link>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</link>
+      <pubDate>Tue, 17 Jul 2018 19:03:07 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</guid>
+      <description>I have a friend who happens to be a huge fan of Apple products. He also hates Vim. He has quite a few stories about how awful Vim is, and how many problems it causes.
+A few weeks ago he texted me about a weird problem he had with editing a file on a remote server using Vim.</description>
+    </item>
+    
+  </channel>
+</rss>

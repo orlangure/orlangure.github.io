@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://orlangure.github.io/about/</loc>
+    <lastmod>2020-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/</loc>
+    <lastmod>2020-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/devops/</loc>
+    <lastmod>2018-11-10T13:42:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/2018-11-10-standalone-mongodb-to-atlas/</loc>
+    <lastmod>2018-11-10T13:42:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/mongo/</loc>
+    <lastmod>2018-11-10T13:42:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/</loc>
+    <lastmod>2018-11-10T13:42:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/</loc>
+    <lastmod>2018-11-10T13:42:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</loc>
+    <lastmod>2018-08-11T21:05:26+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/go/</loc>
+    <lastmod>2018-08-11T21:05:26+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/node.js/</loc>
+    <lastmod>2018-08-11T21:05:26+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/python/</loc>
+    <lastmod>2018-08-11T21:05:26+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/tips/</loc>
+    <lastmod>2018-08-11T21:05:26+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/ios/</loc>
+    <lastmod>2018-07-17T19:03:07+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/vim/</loc>
+    <lastmod>2018-07-17T19:03:07+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</loc>
+    <lastmod>2018-07-17T19:03:07+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/headless-chrome/</loc>
+    <lastmod>2018-07-05T17:17:58+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/mocha/</loc>
+    <lastmod>2018-07-05T17:17:58+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</loc>
+    <lastmod>2018-07-05T17:17:58+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/phantom.js/</loc>
+    <lastmod>2018-07-05T17:17:58+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/polymer/</loc>
+    <lastmod>2018-07-05T17:17:58+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/community/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/development/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/git/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/privacy/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/security/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/style/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://orlangure.github.io/tags/tdd/</loc>
+    <lastmod>2018-04-15T20:14:32+03:00</lastmod>
+  </url>
+  
+</urlset>

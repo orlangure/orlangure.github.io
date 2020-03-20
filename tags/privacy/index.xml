@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>privacy on Yury Fedorov</title>
+    <link>https://orlangure.github.io/tags/privacy/</link>
+    <description>Recent content in privacy on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Apr 2018 20:14:32 +0300</lastBuildDate>
+    
+	<atom:link href="https://orlangure.github.io/tags/privacy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>6 areas to improve as a developer</title>
+      <link>https://orlangure.github.io/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</link>
+      <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
+      
+      <guid>https://orlangure.github.io/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</guid>
+      <description>I love learning new stuff. There are tons of things I&amp;rsquo;d like to read, understand and remember. I&amp;rsquo;m sure such attitude helps me to constantly improve myself and grow professionally. A lot of developers share my point of view, and these who don&amp;rsquo;t, probably should.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,183 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Yury Fedorov</title>
-    <link>https://orlangure.github.io/tags/</link>
+    <link>https://fedorov.dev/tags/</link>
     <description>Recent content in Tags on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 Nov 2018 13:42:16 +0200</lastBuildDate>
     
-	<atom:link href="https://orlangure.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fedorov.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>devops</title>
-      <link>https://orlangure.github.io/tags/devops/</link>
+      <link>https://fedorov.dev/tags/devops/</link>
       <pubDate>Sat, 10 Nov 2018 13:42:16 +0200</pubDate>
       
-      <guid>https://orlangure.github.io/tags/devops/</guid>
+      <guid>https://fedorov.dev/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mongo</title>
-      <link>https://orlangure.github.io/tags/mongo/</link>
+      <link>https://fedorov.dev/tags/mongo/</link>
       <pubDate>Sat, 10 Nov 2018 13:42:16 +0200</pubDate>
       
-      <guid>https://orlangure.github.io/tags/mongo/</guid>
+      <guid>https://fedorov.dev/tags/mongo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://orlangure.github.io/tags/go/</link>
+      <link>https://fedorov.dev/tags/go/</link>
       <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/go/</guid>
+      <guid>https://fedorov.dev/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>node.js</title>
-      <link>https://orlangure.github.io/tags/node.js/</link>
+      <link>https://fedorov.dev/tags/node.js/</link>
       <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/node.js/</guid>
+      <guid>https://fedorov.dev/tags/node.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://orlangure.github.io/tags/python/</link>
+      <link>https://fedorov.dev/tags/python/</link>
       <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/python/</guid>
+      <guid>https://fedorov.dev/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tips</title>
-      <link>https://orlangure.github.io/tags/tips/</link>
+      <link>https://fedorov.dev/tags/tips/</link>
       <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/tips/</guid>
+      <guid>https://fedorov.dev/tags/tips/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ios</title>
-      <link>https://orlangure.github.io/tags/ios/</link>
+      <link>https://fedorov.dev/tags/ios/</link>
       <pubDate>Tue, 17 Jul 2018 19:03:07 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/ios/</guid>
+      <guid>https://fedorov.dev/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vim</title>
-      <link>https://orlangure.github.io/tags/vim/</link>
+      <link>https://fedorov.dev/tags/vim/</link>
       <pubDate>Tue, 17 Jul 2018 19:03:07 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/vim/</guid>
+      <guid>https://fedorov.dev/tags/vim/</guid>
       <description></description>
     </item>
     
     <item>
       <title>headless-chrome</title>
-      <link>https://orlangure.github.io/tags/headless-chrome/</link>
+      <link>https://fedorov.dev/tags/headless-chrome/</link>
       <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/headless-chrome/</guid>
+      <guid>https://fedorov.dev/tags/headless-chrome/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mocha</title>
-      <link>https://orlangure.github.io/tags/mocha/</link>
+      <link>https://fedorov.dev/tags/mocha/</link>
       <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/mocha/</guid>
+      <guid>https://fedorov.dev/tags/mocha/</guid>
       <description></description>
     </item>
     
     <item>
       <title>phantom.js</title>
-      <link>https://orlangure.github.io/tags/phantom.js/</link>
+      <link>https://fedorov.dev/tags/phantom.js/</link>
       <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/phantom.js/</guid>
+      <guid>https://fedorov.dev/tags/phantom.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>polymer</title>
-      <link>https://orlangure.github.io/tags/polymer/</link>
+      <link>https://fedorov.dev/tags/polymer/</link>
       <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/polymer/</guid>
+      <guid>https://fedorov.dev/tags/polymer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>community</title>
-      <link>https://orlangure.github.io/tags/community/</link>
+      <link>https://fedorov.dev/tags/community/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/community/</guid>
+      <guid>https://fedorov.dev/tags/community/</guid>
       <description></description>
     </item>
     
     <item>
       <title>development</title>
-      <link>https://orlangure.github.io/tags/development/</link>
+      <link>https://fedorov.dev/tags/development/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/development/</guid>
+      <guid>https://fedorov.dev/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://orlangure.github.io/tags/git/</link>
+      <link>https://fedorov.dev/tags/git/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/git/</guid>
+      <guid>https://fedorov.dev/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>privacy</title>
-      <link>https://orlangure.github.io/tags/privacy/</link>
+      <link>https://fedorov.dev/tags/privacy/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/privacy/</guid>
+      <guid>https://fedorov.dev/tags/privacy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>security</title>
-      <link>https://orlangure.github.io/tags/security/</link>
+      <link>https://fedorov.dev/tags/security/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/security/</guid>
+      <guid>https://fedorov.dev/tags/security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>style</title>
-      <link>https://orlangure.github.io/tags/style/</link>
+      <link>https://fedorov.dev/tags/style/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/style/</guid>
+      <guid>https://fedorov.dev/tags/style/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tdd</title>
-      <link>https://orlangure.github.io/tags/tdd/</link>
+      <link>https://fedorov.dev/tags/tdd/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/tags/tdd/</guid>
+      <guid>https://fedorov.dev/tags/tdd/</guid>
       <description></description>
     </item>
     

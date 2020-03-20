@@ -2,60 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Yury Fedorov</title>
-    <link>https://orlangure.github.io/posts/</link>
+    <link>https://fedorov.dev/posts/</link>
     <description>Recent content in Posts on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 Nov 2018 13:42:16 +0200</lastBuildDate>
     
-	<atom:link href="https://orlangure.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fedorov.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Migrating standalone Mongo to Atlas</title>
-      <link>https://orlangure.github.io/posts/2018-11-10-standalone-mongodb-to-atlas/</link>
+      <link>https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/</link>
       <pubDate>Sat, 10 Nov 2018 13:42:16 +0200</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-11-10-standalone-mongodb-to-atlas/</guid>
+      <guid>https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/</guid>
       <description>Some time ago I worked on a very interesting project, which was a bit different from all the other things a was used to do. It was about migrating our production database from a standalone self-hosted MongoDB instance to one of the cloud providers.</description>
     </item>
     
     <item>
       <title>Don&#39;t ask me, ask the code</title>
-      <link>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</link>
+      <link>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</link>
       <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
+      <guid>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
       <description>How many times did you find yourself in an argument about whether or not a certain detail in some programming language or framework was implemented in a certain way? I&amp;rsquo;m talking about questions like these ones:
  Can a JS promise be rejected after resolution?</description>
     </item>
     
     <item>
       <title>Vim: you are holding it wrong</title>
-      <link>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</link>
+      <link>https://fedorov.dev/posts/2018-07-17-vim-you-are-holding-it-wrong/</link>
       <pubDate>Tue, 17 Jul 2018 19:03:07 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-07-17-vim-you-are-holding-it-wrong/</guid>
+      <guid>https://fedorov.dev/posts/2018-07-17-vim-you-are-holding-it-wrong/</guid>
       <description>I have a friend who happens to be a huge fan of Apple products. He also hates Vim. He has quite a few stories about how awful Vim is, and how many problems it causes.
 A few weeks ago he texted me about a weird problem he had with editing a file on a remote server using Vim.</description>
     </item>
     
     <item>
       <title>Moving from PhantomJS to Chrome</title>
-      <link>https://orlangure.github.io/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</link>
+      <link>https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</link>
       <pubDate>Thu, 05 Jul 2018 17:17:58 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</guid>
+      <guid>https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</guid>
       <description>We used PhantomJS for automated UI testing for some time. It successfully helped us to be sure that our Polymer-component based pages behaved correctly. At least that&amp;rsquo;s what we thought.
 We used Mocha for testing with mocha-phantomjs package. Our tests looked pretty much the same: we created some components, triggered events and evaluated the results.</description>
     </item>
     
     <item>
       <title>6 areas to improve as a developer</title>
-      <link>https://orlangure.github.io/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</link>
+      <link>https://fedorov.dev/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</link>
       <pubDate>Sun, 15 Apr 2018 20:14:32 +0300</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</guid>
+      <guid>https://fedorov.dev/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</guid>
       <description>I love learning new stuff. There are tons of things I&amp;rsquo;d like to read, understand and remember. I&amp;rsquo;m sure such attitude helps me to constantly improve myself and grow professionally. A lot of developers share my point of view, and these who don&amp;rsquo;t, probably should.</description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mongo on Yury Fedorov</title>
-    <link>https://orlangure.github.io/tags/mongo/</link>
+    <link>https://fedorov.dev/tags/mongo/</link>
     <description>Recent content in mongo on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 Nov 2018 13:42:16 +0200</lastBuildDate>
     
-	<atom:link href="https://orlangure.github.io/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fedorov.dev/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Migrating standalone Mongo to Atlas</title>
-      <link>https://orlangure.github.io/posts/2018-11-10-standalone-mongodb-to-atlas/</link>
+      <link>https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/</link>
       <pubDate>Sat, 10 Nov 2018 13:42:16 +0200</pubDate>
       
-      <guid>https://orlangure.github.io/posts/2018-11-10-standalone-mongodb-to-atlas/</guid>
+      <guid>https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/</guid>
       <description>Some time ago I worked on a very interesting project, which was a bit different from all the other things a was used to do. It was about migrating our production database from a standalone self-hosted MongoDB instance to one of the cloud providers.</description>
     </item>
     

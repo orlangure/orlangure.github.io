@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Reading docker container logs with Go</title>
+      <link>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</link>
+      <pubDate>Fri, 27 Mar 2020 23:53:33 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</guid>
+      <description>I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
+In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://fedorov.dev/about/</link>
       <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>

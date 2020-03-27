@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on Yury Fedorov</title>
-    <link>https://fedorov.dev/tags/go/</link>
-    <description>Recent content in go on Yury Fedorov</description>
+    <title>gnomock on Yury Fedorov</title>
+    <link>https://fedorov.dev/tags/gnomock/</link>
+    <description>Recent content in gnomock on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Mar 2020 23:53:33 +0300</lastBuildDate>
     
-	<atom:link href="https://fedorov.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fedorov.dev/tags/gnomock/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</guid>
       <description>I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
 In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.</description>
-    </item>
-    
-    <item>
-      <title>Don&#39;t ask me, ask the code</title>
-      <link>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</link>
-      <pubDate>Sat, 11 Aug 2018 21:05:26 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
-      <description>How many times did you find yourself in an argument about whether or not a certain detail in some programming language or framework was implemented in a certain way? I&amp;rsquo;m talking about questions like these ones:
- Can a JS promise be rejected after resolution?</description>
     </item>
     
   </channel>

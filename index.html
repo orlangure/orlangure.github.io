@@ -2,7 +2,7 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.67.1" />
+	<meta name="generator" content="Hugo 0.68.3" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -159,6 +159,33 @@ if (!doNotTrack) {
         
         <article>
             <h2>
+                <a href="https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/">
+                    Reading docker container logs with Go
+                </a>
+            </h2>
+            <div><p>I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
+In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.</p></div>
+            <div class="post-footer">
+            <time>March 27, 2020</time>
+
+            
+            
+                
+                    <a class="tag" href="/tags/go">#go</a>
+                
+                    <a class="tag" href="/tags/docker">#docker</a>
+                
+                    <a class="tag" href="/tags/gnomock">#gnomock</a>
+                
+                    <a class="tag" href="/tags/oss">#oss</a>
+                
+            
+            </div> 
+           
+        </article>
+        
+        <article>
+            <h2>
                 <a href="https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/">
                     Migrating standalone Mongo to Atlas
                 </a>
@@ -225,35 +252,6 @@ A few weeks ago he texted me about a weird problem he had with editing a file on
                     <a class="tag" href="/tags/ios">#ios</a>
                 
                     <a class="tag" href="/tags/tips">#tips</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/">
-                    Moving from PhantomJS to Chrome
-                </a>
-            </h2>
-            <div><p>We used PhantomJS for automated UI testing for some time. It successfully helped us to be sure that our Polymer-component based pages behaved correctly. At least that&rsquo;s what we thought.
-We used Mocha for testing with mocha-phantomjs package. Our tests looked pretty much the same: we created some components, triggered events and evaluated the results.</p></div>
-            <div class="post-footer">
-            <time>July 5, 2018</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/phantom.js">#phantom.js</a>
-                
-                    <a class="tag" href="/tags/node.js">#node.js</a>
-                
-                    <a class="tag" href="/tags/mocha">#mocha</a>
-                
-                    <a class="tag" href="/tags/polymer">#polymer</a>
-                
-                    <a class="tag" href="/tags/headless-chrome">#headless-chrome</a>
                 
             
             </div> 

@@ -145,79 +145,91 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">Reading docker container logs with Go</h1>
+    
+    <time>March 27, 2020</time>
+    
+    <div>
+        <p>
+        <p>I recently added a new feature to
+<a href="https://github.com/orlangure/gnomock">Gnomock</a>: an option to forward docker
+container logs to a user-provided <code>io.Writer</code> implementation.</p>
+<p>In short, <a href="https://github.com/orlangure/gnomock">Gnomock</a> spins up popular
+tools inside temporary docker containers and allows Go applications to run
+tests against them very easily. Each supported 3rd party tool is a <code>Preset</code>,
+and anybody can implement any preset they want. Hiding complexity behind
+starting, setting up and taking down containers has a downside for preset
+development: when things fail, it is unclear what is wrong.</p>
+<p>I stumbled upon this issue very early in Gnomock&rsquo;s life: when implementing
+<a href="https://github.com/orlangure/gnomock-mysql">MySQL</a> preset. It uses official
+<a href="https://hub.docker.com/_/mysql/">MySQL docker image</a>, which requires to set
+<code>MYSQL_ROOT_PASSWORD</code> for the container to work. While working on healthcheck
+implementation for this preset, I got stuck while trying to open a connection
+to a fresh database. I saw that the container appeared in <code>docker container ls</code>, but the preset simply didn&rsquo;t work. I then used <code>docker container logs mysql-container</code> to see the following:</p>
+<pre><code>...
+You need to specify one of MYSQL_ROOT_PASSWORD,
+MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD
+</code></pre><p>If Gnomock could display these logs automatically, on demand, without the need
+to manually view container logs, that would be great! <a href="https://pkg.go.dev/github.com/docker/docker/client?tab=doc">Docker SDK for
+Go</a> supported
+viewing container logs, so the task seemed easy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
+		<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;container_id&#34;</span>, <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">ContainerLogsOptions</span>{}
+)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2020</h3> 
+<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">reader</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">EOF</span> {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+</code></pre></div><p>What would be printed to <code>os.Stdout</code> in this case was the logs plus some other
+bytes that have <a href="https://github.com/moby/moby/issues/7375#issuecomment-51462963">special
+meaning</a> to
+Docker, like which stream do these logs belong to. In my terminal, it looked
+like logs surrounded by lots of white space.</p>
+<p>To resolve the issue, I used
+<a href="https://pkg.go.dev/github.com/docker/docker/pkg/stdcopy?tab=doc">stdcopy</a>
+package, that includes a function to strip these bytes and copy actual logs
+only:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
+		<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;container_id&#34;</span>, <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">ContainerLogsOptions</span>{}
+)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Mar 27</span>
-                    <span>
-                      <a href="/posts/2020-03-27-reading-docker-logs-with-go/">Reading docker container logs with Go</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-          <h3>2018</h3> 
+<span style="color:#75715e">// StdCopy is very similar to io.Copy
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">stdcopy</span>.<span style="color:#a6e22e">StdCopy</span>(<span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">src</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">EOF</span> {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+</code></pre></div><p>After this change, only the actual container logs started showing up.</p>
+<p>To summarize, you should use <code>stdcopy.StdCopy</code> function from Docker SDK for Go
+to get the actual log entries from raw container logs (retrieved by
+<code>client.ContainerLogs()</code> or other Docker SDK functions). It will strip
+unnecessary characters from the output, and allow you to view the actual, clean
+logs from your docker containers.</p>
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Nov 10</span>
-                    <span>
-                      <a href="/posts/2018-11-10-standalone-mongodb-to-atlas/">Migrating standalone Mongo to Atlas</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 11</span>
-                    <span>
-                      <a href="/posts/2018-08-11-dont-ask-me-ask-the-code/">Don&#39;t ask me, ask the code</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 17</span>
-                    <span>
-                      <a href="/posts/2018-07-17-vim-you-are-holding-it-wrong/">Vim: you are holding it wrong</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 5</span>
-                    <span>
-                      <a href="/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/">Moving from PhantomJS to Chrome</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Apr 15</span>
-                    <span>
-                      <a href="/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/">6 areas to improve as a developer</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+        </p>
+    </div>
+    
 
-  <div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/go">#go</a>
+        
+            <a class="tag" href="/tags/docker">#docker</a>
+        
+            <a class="tag" href="/tags/gnomock">#gnomock</a>
+        
+            <a class="tag" href="/tags/oss">#oss</a>
+        
+      
+    </div>
 
 
         

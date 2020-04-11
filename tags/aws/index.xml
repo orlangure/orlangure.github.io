@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on Yury Fedorov</title>
-    <link>https://fedorov.dev/tags/docker/</link>
-    <description>Recent content in docker on Yury Fedorov</description>
+    <title>aws on Yury Fedorov</title>
+    <link>https://fedorov.dev/tags/aws/</link>
+    <description>Recent content in aws on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 Apr 2020 19:05:51 +0300</lastBuildDate>
     
-	<atom:link href="https://fedorov.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://fedorov.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,16 +18,6 @@
       
       <guid>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</guid>
       <description>A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.</description>
-    </item>
-    
-    <item>
-      <title>Reading docker container logs with Go</title>
-      <link>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</link>
-      <pubDate>Fri, 27 Mar 2020 23:53:33 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</guid>
-      <description>I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
-In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.</description>
     </item>
     
   </channel>

@@ -3,37 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fedorov.dev/tags/aws/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fedorov.dev/tags/docker/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/tags/gnomock/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/tags/go/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fedorov.dev/tags/localstack/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/tags/oss/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/posts/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</loc>
-    <lastmod>2020-03-27T23:53:33+03:00</lastmod>
+    <loc>https://fedorov.dev/tags/s3/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/tags/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fedorov.dev/tags/testing/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</loc>
     <lastmod>2020-03-27T23:53:33+03:00</lastmod>
   </url>
   

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2020 23:53:33 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 11 Apr 2020 19:05:51 +0300</lastBuildDate>
     
 	<atom:link href="https://fedorov.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Testing Go&#43;S3 with Gnomock and Localstack</title>
+      <link>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</link>
+      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</guid>
+      <description>A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.</description>
+    </item>
     
     <item>
       <title>Reading docker container logs with Go</title>

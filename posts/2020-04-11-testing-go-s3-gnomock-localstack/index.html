@@ -166,13 +166,13 @@ were ways to mock the service, I felt that these tests will never be good
 enough.</p>
 <blockquote>
 <p>The original version of the code can be found
-<a href="https://github.com/orlangure/gompress/tree/v0.1.0">here</a>.</p>
+<a href="https://github.com/orlangure/gompress/tree/v0.1.2">here</a>.</p>
 </blockquote>
-<p>Recently, after I created <a href="https://github.com/orlangure/gnomock">Gnomock</a>, a
-<strong>framework for testing Go code that uses external services without mocking
-them</strong>, I decided to use it to test
+<p>Recently, after I created <a href="https://github.com/orlangure/gnomock">Gnomock</a>, an
+<strong>integration and end-to-end testing toolkit</strong> that uses external services
+without mocking them, I decided to use it to test
 <a href="https://github.com/orlangure/gompress">gompress</a> as well.</p>
-<h2 id="gnomock-localstack">gnomock-localstack</h2>
+<h2 id="localstack-preset">Localstack preset</h2>
 <p><a href="https://github.com/localstack/localstack">Localstack</a> is an very popular
 project that allows to <strong>spin up many AWS services, including S3, locally,
 using a single docker container</strong>. To be used in Go tests, it needs to be
@@ -180,15 +180,18 @@ wrapped with some code that allows to pull the image, start the container,
 setup port bindings, wait for the services to become available and setup some
 initial state, all before starting to actually verify whatever the program
 does. These actions are repeated for every package that uses S3, so I
-implemented a new preset for Gnomock:
-<a href="https://github.com/orlangure/gnomock-localstack">gnomock-localstack</a>. This
-preset can be reused anywhere very easily, and here is how.</p>
+implemented a new
+<a href="https://github.com/orlangure/gnomock/tree/master/preset/localstack">preset</a>
+for Gnomock. This preset can be reused anywhere very easily, and here is how.</p>
 <h2 id="implementation">Implementation</h2>
 <h3 id="getting-the-dependencies">Getting the dependencies</h3>
-<p>First of all I needed to add two new dependencies to the project:</p>
+<p>First of all, <code>go get</code> the package:</p>
 <pre><code>$ go get github.com/orlangure/gnomock
-$ go get github.com/orlangure/gnomock-localstack
 </code></pre><h3 id="preparing-the-code">Preparing the code</h3>
+<blockquote>
+<p>You can skip this part, and go directly to the <a href="#preparing-test-data">actual
+testing</a></p>
+</blockquote>
 <p>Since I originally wrote the code without thinking about its testability, it
 wasn&rsquo;t really possible to test anything easily. There were a few problems:</p>
 <h4 id="moving-execution-to-sub-package">Moving execution to sub-package</h4>
@@ -261,11 +264,11 @@ $ for i in `seq 100`; do openssl rand -base64 -out testdata/input-bucket/b-$i.tx
 </code></pre><p>All the files were put into <code>input-bucket</code> folder, which later will be
 translated to a new S3 bucket.</p>
 <h3 id="setting-up-localstack">Setting up localstack</h3>
-<p>Finally, I was able to start writing the <a href="https://github.com/orlangure/gompress/blob/v0.1.1/gompress/gompress_test.go">test
+<p>Finally, I was able to start writing the <a href="https://github.com/orlangure/gompress/blob/v0.1.2/gompress/gompress_test.go">test
 itself</a>.
 First, I needed a running instance of localstack, with all my test files
 already inside it. It was an easy task with
-<a href="https://github.com/orlangure/gnomock-localstack">gnomock-localstack</a>:</p>
+<a href="https://github.com/orlangure/gnomock">gnomock</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// create empty folder for output bucket
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">MkdirAll</span>(<span style="color:#e6db74">&#34;./testdata/output-bucket&#34;</span>, <span style="color:#ae81ff">0755</span>)
 <span style="color:#75715e">// ...
@@ -285,12 +288,12 @@ already inside it. It was an easy task with
 <span style="color:#75715e">// local s3 service is now accessible:
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">s3Endpoint</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;http://%s/&#34;</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Address</span>(<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">S3Port</span>))
 </code></pre></div><p><code>testdata</code> folder already included <code>input-bucket</code> directory, and I needed to
-create an empty <code>output-bucket</code> folder so that <code>gnomock-localstack</code> will
-recreate this structure in S3: one bucket for the input, with all the files,
-and the other one for the output, empty.</p>
-<p><code>gnomock-localstack</code> preset allows to recreate a local folder structure in S3,
+create an empty <code>output-bucket</code> folder so that <code>gnomock</code> will recreate this
+structure in S3: one bucket for the input, with all the files, and the other
+one for the output, empty.</p>
+<p>Gnomock Localstack preset allows to recreate a local folder structure in S3,
 running locally using localstack. All it needs is a
-<a href="https://github.com/orlangure/gnomock-localstack/blob/6e3ff0a319556864e5d04c368261d622923f0d3c/options_s3.go#L28"><code>localstack.WithS3Files</code></a>
+<a href="https://pkg.go.dev/github.com/orlangure/gnomock@v0.9.0/preset/localstack?tab=doc#WithS3Files"><code>localstack.WithS3Files</code></a>
 option with a root directory of the required S3 state. Every direct child
 folder will be used as a bucket, and all its files will be uploaded into it,
 keeping the relative paths.</p>
@@ -339,17 +342,17 @@ original state was as I expected:</p>
 </code></pre></div><p>Note the AWS credentials environment variables: the original code uses these
 credentials to connect, but in tests they don&rsquo;t have to be even close to real
 credentials.</p>
-<p>You can see the rest of the code in the <a href="https://github.com/orlangure/gompress/blob/v0.1.1/gompress/gompress_test.go">test
+<p>You can see the rest of the code in the <a href="https://github.com/orlangure/gompress/blob/v0.1.2/gompress/gompress_test.go">test
 file</a>,
 but there is nothing new: I use AWS SDK for Go to list and read files from S3
 (running locally) to verify that that code did what I expected.</p>
 <h2 id="summary">Summary</h2>
 <p>I didn&rsquo;t add any tests to a program I wrote once because there was no way to do
 so that I found good enough. Later,
-<a href="https://github.com/orlangure/gnomock-localstack">gnomock-localstack</a> made it
-possible: it was very easy to spin up S3 service locally, directly from my test
-code in Go, set up its initial state using one line of code, and run the tests
-against a real S3 service without any mocks.</p>
+<a href="https://github.com/orlangure/gnomock">gnomock</a> made it possible: it was very
+easy to spin up S3 service locally, directly from my test code in Go, set up
+its initial state using one line of code, and run the tests against a real S3
+service without any mocks.</p>
 
         </p>
     </div>

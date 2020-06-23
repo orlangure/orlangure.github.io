@@ -58,17 +58,17 @@
   </url>
   
   <url>
+    <loc>https://fedorov.dev/</loc>
+    <lastmod>2020-04-11T19:05:51+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</loc>
     <lastmod>2020-03-27T23:53:33+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://fedorov.dev/about/</loc>
-    <lastmod>2020-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/</loc>
     <lastmod>2020-03-20T00:00:00+00:00</lastmod>
   </url>
   

@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="https://fedorov.dev/tags/oss/index.xml" title="Yury Fedorov" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -147,64 +145,116 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">Code coverage in end-to-end/integration Go tests</h1>
+    
+    <time>June 27, 2020</time>
+    
+    <div>
+        <p>
+        <p>I like writing <strong>integration tests</strong> for my Go code. They give me confidence
+that everything works as expected. This was one of the reasons I built
+<a href="https://github.com/orlangure/gnomock">Gnomock</a> (an integration and end-to-end
+toolkit based on Docker): to easily write tests for code that uses databases or
+other external services, like <a href="https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/">AWS
+S3</a> or
+Splunk.</p>
+<p>I often put integration and end-to-end tests either into a separate package, or
+into the <code>main</code> package (<code>main_test</code> in the project root). I had one problem
+with it: <strong>code coverage reports</strong> were not good enough, they skipped entire
+packages and gave unexpected results. This was the default behavior when using
+the following command:</p>
+<blockquote>
+<p>In the next examples, I will use a
+<a href="https://github.com/orlangure/crud-demo">demo</a> app, which has an integration
+test, and two packages: <code>models</code> and <code>handlers</code>.</p>
+</blockquote>
+<pre><code>$ go test -race -cover
 
-  <h1>Tagged "oss"</h1>
-  
-  
+PASS
+coverage: 0.0% of statements
+ok      github.com/orlangure/crud-demo  20.876s
+</code></pre><p>My tests took 20 seconds to run, but no code was covered, which I knew was
+wrong. The issue was that the <strong>coverage report ignored sub-packages</strong>
+(<code>models</code> and <code>handlers</code>), which had all the important things in them.</p>
+<p>Turns out there is a <code>-coverpkg</code> flag that allows to select a package for the
+<strong>coverage report</strong>:</p>
+<pre><code>$ go test -race -cover -coverpkg ./handlers
+
+PASS
+coverage: 58.1% of statements in ./handlers
+ok      github.com/orlangure/crud-demo  20.617s
+</code></pre><p>It is even possible to <strong>report coverage for all sub-packages</strong>:</p>
+<pre><code>$ go test -race -cover -coverpkg ./...
+
+PASS
+coverage: 58.7% of statements in ./...
+ok      github.com/orlangure/crud-demo  19.845s
+</code></pre><p>This information is more useful than <code>coverage: 0.0%</code>, but not useful enough.
+To add more details, <strong>coverage report can be saved into a file</strong> for further
+processing:</p>
+<pre><code>$ go test -race -cover -coverpkg ./... -coverprofile cover.out
+
+PASS
+coverage: 58.7% of statements in ./...
+ok      github.com/orlangure/crud-demo  21.038s
+</code></pre><p>The output looks the same, but a new file appears in the current directory. We
+can extract a more detailed report from it:</p>
+<pre><code>$ go tool cover -func cover.out
+
+&lt;skipped&gt;/handlers/handlers.go:14: CreateThingHandler      63.6%
+&lt;skipped&gt;/handlers/handlers.go:36: GetThingByNameHandler   57.1%
+&lt;skipped&gt;/handlers/handlers.go:63: GetThingByIDHandler     55.6%
+&lt;skipped&gt;/main.go:14:              main                    0.0%
+&lt;skipped&gt;/models/things.go:19:     String                  0.0%
+&lt;skipped&gt;/models/things.go:24:     Connect                 75.0%
+&lt;skipped&gt;/models/things.go:39:     CreateThing             80.0%
+&lt;skipped&gt;/models/things.go:54:     GetThingByName          85.7%
+&lt;skipped&gt;/models/things.go:74:     GetThingByID            85.7%
+total:                             (statements)            58.7%
+</code></pre><p>From this report it is clear that <code>String</code> function from <code>things.go</code> file has
+zero coverage. This can be improved easily by adding another test. What about
+other functions with non-zero coverage? <strong>What did the tests miss?</strong></p>
+<p>There is another useful <code>go tool</code> feature:</p>
+<pre><code>$ go tool cover -html cover.out
+</code></pre><img src="/coverage-html.png" width="100%"/>
+<p>This report includes coverage for every line of code. It appears that none of
+the errors were tested 😿</p>
+<p>Coverage reports can even include a heat map and tell you <strong>how many times</strong>
+each line of code was hit! This options is set by default when <code>-race</code> flag is
+used, or can be allowed with <code>-covermode atomic</code> flag. Read more about
+supported flags <a href="https://golang.org/cmd/go/#hdr-Testing_flags">here</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>Integration tests are great to build confidence in your code, but coverage
+reports of such tests in Go can be tricky. Use <code>-coverpkg</code> and <code>-coverprofile</code>
+flags to get more details from test coverage reports, and use <code>go tool cover -html</code> to view the results in browser.</p>
+<p>If your code relies on external services, like databases or AWS,
+<a href="https://github.com/orlangure/gnomock">Gnomock</a> can be useful for writing
+integration or end-to-end tests.</p>
+
+        </p>
+    </div>
     
-    <article>
-            <h2>
-                <a href="https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/">
-                    Code coverage in end-to-end/integration Go tests
-                </a>
-            </h2>
-            <div>
-                <p>
-                I like writing integration tests for my Go code. They give me confidence that everything works as expected. This was one of the reasons I built Gnomock (an integration and end-to-end toolkit based on Docker): to easily write tests for code that uses databases or other external services, like AWS S3 or Splunk.
-                </p>
-            </div>
-            <div class="post-footer">
-            <time>June 27, 2020</time>
-            </div> 
-        </article>
-    
-  
-    
-    <article>
-            <h2>
-                <a href="https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/">
-                    Testing Go&#43;S3 with Gnomock and Localstack
-                </a>
-            </h2>
-            <div>
-                <p>
-                A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.
-                </p>
-            </div>
-            <div class="post-footer">
-            <time>April 11, 2020</time>
-            </div> 
-        </article>
-    
-  
-    
-    <article>
-            <h2>
-                <a href="https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/">
-                    Reading docker container logs with Go
-                </a>
-            </h2>
-            <div>
-                <p>
-                I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
-In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.
-                </p>
-            </div>
-            <div class="post-footer">
-            <time>March 27, 2020</time>
-            </div> 
-        </article>
-    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/go">#go</a>
+        
+            <a class="tag" href="/tags/gnomock">#gnomock</a>
+        
+            <a class="tag" href="/tags/coverage">#coverage</a>
+        
+            <a class="tag" href="/tags/integration-testing">#integration-testing</a>
+        
+            <a class="tag" href="/tags/testing">#testing</a>
+        
+            <a class="tag" href="/tags/end-to-end-testing">#end-to-end-testing</a>
+        
+            <a class="tag" href="/tags/oss">#oss</a>
+        
+      
+    </div>
 
 
         

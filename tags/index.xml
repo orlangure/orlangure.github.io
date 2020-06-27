@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2020 19:05:51 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2020 23:39:50 +0300</lastBuildDate>
     
 	<atom:link href="https://fedorov.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>coverage</title>
+      <link>https://fedorov.dev/tags/coverage/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/coverage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>end-to-end-testing</title>
+      <link>https://fedorov.dev/tags/end-to-end-testing/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/end-to-end-testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gnomock</title>
+      <link>https://fedorov.dev/tags/gnomock/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/gnomock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://fedorov.dev/tags/go/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>integration-testing</title>
+      <link>https://fedorov.dev/tags/integration-testing/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/integration-testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oss</title>
+      <link>https://fedorov.dev/tags/oss/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/oss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://fedorov.dev/tags/testing/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/tags/testing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>aws</title>
@@ -30,24 +93,6 @@
     </item>
     
     <item>
-      <title>gnomock</title>
-      <link>https://fedorov.dev/tags/gnomock/</link>
-      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/tags/gnomock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>https://fedorov.dev/tags/go/</link>
-      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>localstack</title>
       <link>https://fedorov.dev/tags/localstack/</link>
       <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
@@ -57,29 +102,11 @@
     </item>
     
     <item>
-      <title>oss</title>
-      <link>https://fedorov.dev/tags/oss/</link>
-      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/tags/oss/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>s3</title>
       <link>https://fedorov.dev/tags/s3/</link>
       <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
       
       <guid>https://fedorov.dev/tags/s3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>testing</title>
-      <link>https://fedorov.dev/tags/testing/</link>
-      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
-      
-      <guid>https://fedorov.dev/tags/testing/</guid>
       <description></description>
     </item>
     

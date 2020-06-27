@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>coverage on Yury Fedorov</title>
+    <link>https://fedorov.dev/tags/coverage/</link>
+    <description>Recent content in coverage on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Jun 2020 23:39:50 +0300</lastBuildDate>
+    
+	<atom:link href="https://fedorov.dev/tags/coverage/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code coverage in end-to-end/integration Go tests</title>
+      <link>https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/</link>
+      <pubDate>Sat, 27 Jun 2020 23:39:50 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/</guid>
+      <description>I like writing integration tests for my Go code. They give me confidence that everything works as expected. This was one of the reasons I built Gnomock (an integration and end-to-end toolkit based on Docker): to easily write tests for code that uses databases or other external services, like AWS S3 or Splunk.</description>
+    </item>
+    
+  </channel>
+</rss>

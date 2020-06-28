@@ -220,13 +220,13 @@ other functions with non-zero coverage? <strong>What did the tests miss?</strong
 <p>This report includes coverage for every line of code. It appears that none of
 the errors were tested 😿</p>
 <p>Coverage reports can even include a heat map and tell you <strong>how many times</strong>
-each line of code was hit! This options is set by default when <code>-race</code> flag is
+each line of code was hit! This option is set by default when <code>-race</code> flag is
 used, or can be allowed with <code>-covermode atomic</code> flag. Read more about
 supported flags <a href="https://golang.org/cmd/go/#hdr-Testing_flags">here</a>.</p>
 <h2 id="summary">Summary</h2>
 <p>Integration tests are great to build confidence in your code, but coverage
 reports of such tests in Go can be tricky. Use <code>-coverpkg</code> and <code>-coverprofile</code>
-flags to get more details from test coverage reports, and use <code>go tool cover -html</code> to view the results in browser.</p>
+flags to get more details from test coverage reports, and use <code>go tool cover -html</code> to view the results in a browser.</p>
 <p>If your code relies on external services, like databases or AWS,
 <a href="https://github.com/orlangure/gnomock">Gnomock</a> can be useful for writing
 integration or end-to-end tests.</p>

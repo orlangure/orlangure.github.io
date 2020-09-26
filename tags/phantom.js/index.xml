@@ -6,11 +6,7 @@
     <description>Recent content in phantom.js on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Jul 2018 17:17:58 +0300</lastBuildDate>
-    
-	<atom:link href="https://fedorov.dev/tags/phantom.js/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 05 Jul 2018 17:17:58 +0300</lastBuildDate><atom:link href="https://fedorov.dev/tags/phantom.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Moving from PhantomJS to Chrome</title>
       <link>https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</link>

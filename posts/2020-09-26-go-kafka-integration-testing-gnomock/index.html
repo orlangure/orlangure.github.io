@@ -145,103 +145,176 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">Integration testing of Go programs that use Kafka</h1>
+    
+    <time>September 26, 2020</time>
+    
+    <div>
+        <p>
+        <p>Kafka message broker is a popular choice for Go programs that require high
+performance and great scalability. In this post I&rsquo;m going to demonstrate an
+easy way to build integration tests for such applications. These tests won&rsquo;t
+need any mocks: they use a real Kafka instance under the hood, giving the most
+confidence that everything works correctly.</p>
+<p>I created a <a href="https://github.com/orlangure/testing-kafka-in-go">small program</a>
+for demonstration purposes: it includes a working program written in Go that
+exposes a web API to submit new events and get up to date aggregated data
+on all submitted events.</p>
+<h3 id="program-overview">Program overview</h3>
+<p>I encourage you to <a href="https://github.com/orlangure/testing-kafka-in-go">clone the
+project</a> and look around
+before moving on. The layout is simple:</p>
+<ul>
+<li><code>producer</code> and <code>consumer</code> packages implement actual features to produce and
+consume messages using Kafka message broker;</li>
+<li><code>reporter</code> package that implements naive event aggregation (it simply counts
+events per &ldquo;account&rdquo;);</li>
+<li><code>handler</code> package that exposes web API to submit new messages and get up to
+date usage statistics.</li>
+</ul>
+<p><code>/event</code> endpoint accepts JSON events (with <code>type</code> and <code>account_id</code> fields).
+The program counts events per account, per event type, and keeps the results in
+memory. <code>/stats</code> endpoint returns these results to the user. Pretty
+straightforward!</p>
+<h3 id="testing-objectives">Testing objectives</h3>
+<p>Instead of (or in addition to) writing unit tests for each package, we will
+write a single integration test that will execute a number of HTTP requests and
+confirm that the program works as expected from end user perspective.</p>
+<p>We would like to confirm that given a combination of <code>Producer</code>, <code>Consumer</code> and
+<code>Reporter</code> instances, web API of our program returns correct event counts given
+the events we ourselves submit.</p>
+<blockquote>
+<p>The following code snippets are taken directly from the <a href="https://github.com/orlangure/testing-kafka-in-go">linked
+repository</a>, from
+<a href="https://github.com/orlangure/testing-kafka-in-go/blob/master/main_test.go"><code>main_test.go</code></a>.</p>
+</blockquote>
+<h3 id="setting-up-kafka-container-for-tests">Setting up Kafka container for tests</h3>
+<p>Our test will use <a href="https://github.com/orlangure/gnomock">gnomock</a> for creating
+and setting up a temporary Kafka docker container:</p>
+<pre><code>$ go get https://github.com/orlangure/gnomock
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;github.com/orlangure/gnomock&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/orlangure/gnomock/preset/kafka&#34;</span>
+)
+</code></pre></div><p>We will also use <code>testify</code> library:</p>
+<pre><code>$ go get github.com/stretchr/testify
+</code></pre><p>Creating a Kafka container with clean state directly from Go code is very easy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">container</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Start</span>(
+    <span style="color:#a6e22e">kafka</span>.<span style="color:#a6e22e">Preset</span>(<span style="color:#a6e22e">kafka</span>.<span style="color:#a6e22e">WithTopics</span>(<span style="color:#e6db74">&#34;events&#34;</span>)),
+    <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">WithDebugMode</span>(), <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">WithLogWriter</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>),
+    <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">WithContainerName</span>(<span style="color:#e6db74">&#34;kafka&#34;</span>),
+)
+<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">err</span>)
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2020</h3> 
+<span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() {
+    <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Stop</span>(<span style="color:#a6e22e">container</span>))
+}()
+</code></pre></div><p><code>kafka.Preset()</code> creates a new Kafka Preset that <code>gnomock</code> will later set up.
+<code>kafka.WithTopics(&quot;events&quot;)</code> lets <code>gnomock</code> know that we will need a new topic
+in the container: <code>events</code>. This Kafka topic is later used in tests.</p>
+<p><code>gnomock.WithDebugMode(), gnomock.WithLogWriter(os.Stdout)</code> are there for
+easier test debugging experience, and can be removed once tests run smoothly.
+Debug mode lets <code>gnomock</code> print debug information about every step it makes
+(download docker image, create a container, etc.) Custom log writer forwards
+all Kafka container logs to <code>os.Stdout</code>, which can be useful to debug internal
+container failures.</p>
+<p>Calling <code>gnomock.Stop(container)</code> in the end allows to stop and remove <code>kafka</code>
+container since it won&rsquo;t be needed after the tests are complete. Sometimes you
+might want to skip this call. For example, if you want to manually debug tests
+failure.</p>
+<p>Once this code completes, we have a container that is already configured, has
+the requested topics, and is ready to accept new connections, and
+produce/consume messages.</p>
+<h3 id="setting-up-our-program-for-testing">Setting up our program for testing</h3>
+<p>Our test uses actual, &ldquo;production&rdquo; code for tests. There is no need to create
+mock instances of any types, no need to inject custom, test-only configuration,
+or do any other things that won&rsquo;t happen when the program actually runs.</p>
+<p>As in case of regular usage, we need to set up a <code>Producer</code>, <code>Consumer</code> and
+<code>Reporter</code> instances, and use them to create an <code>http.Handler</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">producer</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">Address</span>(<span style="color:#a6e22e">kafka</span>.<span style="color:#a6e22e">BrokerPort</span>), <span style="color:#e6db74">&#34;events&#34;</span>)
+<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">consumer</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">Address</span>(<span style="color:#a6e22e">kafka</span>.<span style="color:#a6e22e">BrokerPort</span>), <span style="color:#e6db74">&#34;events&#34;</span>)
+<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reporter</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">c</span>)
+<span style="color:#a6e22e">mux</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">handler</span>.<span style="color:#a6e22e">Mux</span>(<span style="color:#a6e22e">p</span>, <span style="color:#a6e22e">r</span>)
+</code></pre></div><p>Note how we use &ldquo;events&rdquo; topic which we previously asked <code>gnomock</code> to create
+(<code>kafka.WithTopics(&quot;events&quot;)</code>). Since Kafka container that we use exposes
+multiple ports, we need to specify which address to connect to. This is done
+with <code>container.Address(kafka.BrokerPort)</code>: we only need to know on which port
+the container exposes the Broker.</p>
+<h3 id="actual-testing">Actual testing</h3>
+<p>At this point, we already have a Kafka container that we will use in our tests,
+and we have an <code>http.Handler</code> implementation that exposes <code>/event</code> and <code>/stats</code>
+endpoints. The following code is not different from any other tests, with or
+without <code>gnomock</code> and/or Kafka.</p>
+<p>You are welcome to explore the code and run it locally😼</p>
+<h3 id="running-tests-with-coverage-report">Running tests with coverage report</h3>
+<p>By default, Go tests executed with <code>-cover</code> flag report coverage for the same
+package that includes the test. Read more about this topic in <a href="https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/">my blog
+post</a>.</p>
+<p>In the end, our test execution command will look like this:</p>
+<pre><code># run tests with coverage report
+$ go test -race -cover -v -coverpkg ./... -coverprofile coverage.out
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 26</span>
-                    <span>
-                      <a href="/posts/2020-09-26-go-kafka-integration-testing-gnomock/">Integration testing of Go programs that use Kafka</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jun 27</span>
-                    <span>
-                      <a href="/posts/2020-06-27-golang-end-to-end-test-coverage/">Code coverage in end-to-end/integration Go tests</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Apr 11</span>
-                    <span>
-                      <a href="/posts/2020-04-11-testing-go-s3-gnomock-localstack/">Testing Go&#43;S3 with Gnomock and Localstack</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Mar 27</span>
-                    <span>
-                      <a href="/posts/2020-03-27-reading-docker-logs-with-go/">Reading docker container logs with Go</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-          <h3>2018</h3> 
+# explore the coverage in browser
+$ go tool cover -html coverage.out
+</code></pre><p>As can be seen from the report, only the error handling code is not covered
+with tests, which sometimes is enough to at least confirm the &ldquo;happy flow&rdquo;.</p>
+<h3 id="running-integration-tests-in-github-actions">Running integration tests in Github Actions</h3>
+<p>As a bonus, below is a workflow code that runs our integration tests with a
+real Kafka container in Github Actions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Test</span>
+<span style="color:#f92672">on</span>:
+  <span style="color:#f92672">push</span>:
+    <span style="color:#f92672">branches</span>:
+      - <span style="color:#ae81ff">master</span>
+  <span style="color:#f92672">pull_request</span>:
+<span style="color:#f92672">jobs</span>:
+  <span style="color:#f92672">integration-test</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Integration test</span>
+    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+    <span style="color:#f92672">steps</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Set up Go 1.15</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-go@v1</span>
+        <span style="color:#f92672">with</span>:
+          <span style="color:#f92672">go-version</span>: <span style="color:#ae81ff">1.15</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Check out code into the Go module directory</span>
+        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v1</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Get dependencies</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">go get -v -t -d ./...</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Test</span>
+        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">go test -race -cover -coverpkg ./... -v</span>
+</code></pre></div><p>This workflow does not require any external configuration or scripts.
+Everything you need to run integration tests against an actual Kafka container
+is inside our Go tests.</p>
+<blockquote>
+<p>Please note that integration tests are often slower that unit tests. The
+suggested approach uses docker extensively, it downloads pretty large images,
+creates fairly heavy containers and generally takes some time to complete.
+Remember it when adding a new CI/CD job as it can cost you more money than
+you expect.</p>
+</blockquote>
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Nov 10</span>
-                    <span>
-                      <a href="/posts/2018-11-10-standalone-mongodb-to-atlas/">Migrating standalone Mongo to Atlas</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 11</span>
-                    <span>
-                      <a href="/posts/2018-08-11-dont-ask-me-ask-the-code/">Don&#39;t ask me, ask the code</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 17</span>
-                    <span>
-                      <a href="/posts/2018-07-17-vim-you-are-holding-it-wrong/">Vim: you are holding it wrong</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 5</span>
-                    <span>
-                      <a href="/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/">Moving from PhantomJS to Chrome</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Apr 15</span>
-                    <span>
-                      <a href="/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/">6 areas to improve as a developer</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+        </p>
+    </div>
+    
 
-  <div class="page-footer"></div>
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/go">#go</a>
+        
+            <a class="tag" href="/tags/docker">#docker</a>
+        
+            <a class="tag" href="/tags/gnomock">#gnomock</a>
+        
+            <a class="tag" href="/tags/kafka">#kafka</a>
+        
+            <a class="tag" href="/tags/testing">#testing</a>
+        
+            <a class="tag" href="/tags/oss">#oss</a>
+        
+      
+    </div>
 
 
         

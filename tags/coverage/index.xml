@@ -6,11 +6,7 @@
     <description>Recent content in coverage on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Jun 2020 23:39:50 +0300</lastBuildDate>
-    
-	<atom:link href="https://fedorov.dev/tags/coverage/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 27 Jun 2020 23:39:50 +0300</lastBuildDate><atom:link href="https://fedorov.dev/tags/coverage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Code coverage in end-to-end/integration Go tests</title>
       <link>https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/</link>

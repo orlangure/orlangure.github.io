@@ -6,10 +6,15 @@
     <description>Recent content in testing on Yury Fedorov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Jun 2020 23:39:50 +0300</lastBuildDate>
-    
-	<atom:link href="https://fedorov.dev/tags/testing/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 26 Sep 2020 17:34:33 +0300</lastBuildDate><atom:link href="https://fedorov.dev/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integration testing of Go programs that use Kafka</title>
+      <link>https://fedorov.dev/posts/2020-09-26-go-kafka-integration-testing-gnomock/</link>
+      <pubDate>Sat, 26 Sep 2020 17:34:33 +0300</pubDate>
+      
+      <guid>https://fedorov.dev/posts/2020-09-26-go-kafka-integration-testing-gnomock/</guid>
+      <description>Kafka message broker is a popular choice for Go programs that require high performance and great scalability. In this post I&amp;rsquo;m going to demonstrate an easy way to build integration tests for such applications. These tests won&amp;rsquo;t need any mocks: they use a real Kafka instance under the hood, giving the most confidence that everything works correctly.</description>
+    </item>
     
     <item>
       <title>Code coverage in end-to-end/integration Go tests</title>

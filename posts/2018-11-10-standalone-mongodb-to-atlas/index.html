@@ -199,8 +199,8 @@ the process could be started.</p>
 node replica set, since it was impossible to migrate a standalone instance to
 Atlas directly. This step is covered in most of the guides:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># /etc/mongod.conf</span>
-<span style="color:#66d9ef">replication</span>:
-  <span style="color:#66d9ef">replSetName</span>: rs0
+<span style="color:#f92672">replication</span>:
+  <span style="color:#f92672">replSetName</span>: <span style="color:#ae81ff">rs0</span>
 </code></pre></div><p>followed by service restart. This part is quick and causes very little down
 time. Our app knew how to handle short database hiccups, so that was fine.
 Since it was a new replica set, another command was required:

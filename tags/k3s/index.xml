@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>k3s on Yury Fedorov</title>
+    <link>https://fedorov.dev/tags/k3s/</link>
+    <description>Recent content in k3s on Yury Fedorov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://fedorov.dev/tags/k3s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing Kubernetes automation tools with Gnomock</title>
+      <link>https://fedorov.dev/posts/2020-11-06-testing-kubernetes-automation-tools-gnomock/</link>
+      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fedorov.dev/posts/2020-11-06-testing-kubernetes-automation-tools-gnomock/</guid>
+      <description>A recent Gnomock release v0.10.0 brought a new integration with it: k3s preset that allows integration testing of Kubernetes automation tools written in Go.
+This new preset creates a docker container that runs a single node k3s (lightweight Kubernetes) cluster in it. It uses orlangure/k3s docker image that has many k3s versions available as tags.</description>
+    </item>
+    
+  </channel>
+</rss>

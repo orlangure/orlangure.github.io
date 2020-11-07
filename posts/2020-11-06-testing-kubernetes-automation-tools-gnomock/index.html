@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Yury Fedorov</title>
+    <title>Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -15,6 +15,19 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FF3DB4">
     <meta name="theme-color" content="#ffffff">
+
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Testing Kubernetes automation tools with Gnomock &middot; Yury Fedorov (@orlangure)"/>
+    <meta property="og:description" content="Integration tests for Kubernetes automation tools powered by Gnomock"/>
+    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
+    <meta property="og:url" content="https://fedorov.dev/posts/2020-11-06-testing-kubernetes-automation-tools-gnomock/"/>
+    <meta property="og:locale" content="en">
+    
+    <meta property="og:image" content="https://fedorov.dev/gnomock-kubernetes-og.png"/>
+    <meta property="og:image:secure_url" content="https://fedorov.dev/gnomock-kubernetes-og.png"/>
+    
+    <meta property="og:type" content="website"/>
 
     
     
@@ -44,12 +57,13 @@ if (!doNotTrack) {
 </script>
 
 </head>
+
     <body>
         
 <nav>
   <header>
     <div class="site-title">
-        <a href="/">Yury Fedorov</a>
+        <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
   <div class="nav-menu">
@@ -171,9 +185,8 @@ used to write <strong>integration tests for a Kubernetes automation tool</strong
 <p>This preset was originally
 <a href="https://github.com/orlangure/gnomock/issues/64">requested</a> by a team member of
 <a href="https://tanka.dev/">Grafana Tanka</a> project, making this tool an obvious
-candidate to get some integration testing going on. Unfortunately, its command
-line framework was pretty new and lacking some critical features, like
-<code>cobra</code>&rsquo;s
+candidate to get some integration testing going on. Unfortunately, its CLI
+framework was pretty new and lacking some critical features, like <code>cobra</code>&rsquo;s
 <a href="https://github.com/spf13/cobra/blob/40d34bca1bffe2f5e84b18d7fd94d5b3c02275a6/command.go#L229"><code>SetArgs</code></a>
 and
 <a href="https://github.com/spf13/cobra/blob/40d34bca1bffe2f5e84b18d7fd94d5b3c02275a6/command.go#L886"><code>ExecuteContext</code></a>

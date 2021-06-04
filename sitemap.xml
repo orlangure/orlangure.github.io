@@ -1,240 +1,152 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://fedorov.dev/tags/github/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/posts/2021-06-04-github-actions-macos-docker-gnomock/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/gnomock/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/go/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/integration-testing/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/oss/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/posts/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/testing/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/</loc>
+    <lastmod>2021-06-04T17:38:33+03:00</lastmod>
+  </url><url>
     <loc>https://fedorov.dev/tags/docker/</loc>
     <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/gnomock/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/go/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/k3s/</loc>
     <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/kubernetes/</loc>
     <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/oss/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/posts/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/testing/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2020-11-06-testing-kubernetes-automation-tools-gnomock/</loc>
     <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/</loc>
-    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2020-09-26-go-kafka-integration-testing-gnomock/</loc>
     <lastmod>2020-09-26T17:34:33+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/kafka/</loc>
     <lastmod>2020-09-26T17:34:33+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/</loc>
     <lastmod>2020-06-27T23:39:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/coverage/</loc>
     <lastmod>2020-06-27T23:39:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/end-to-end-testing/</loc>
     <lastmod>2020-06-27T23:39:50+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fedorov.dev/tags/integration-testing/</loc>
-    <lastmod>2020-06-27T23:39:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/aws/</loc>
     <lastmod>2020-04-11T19:05:51+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/localstack/</loc>
     <lastmod>2020-04-11T19:05:51+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/s3/</loc>
     <lastmod>2020-04-11T19:05:51+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</loc>
     <lastmod>2020-04-11T19:05:51+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/</loc>
     <lastmod>2020-03-27T23:53:33+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/about/</loc>
     <lastmod>2020-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/devops/</loc>
     <lastmod>2018-11-10T13:42:16+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/</loc>
     <lastmod>2018-11-10T13:42:16+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/mongo/</loc>
     <lastmod>2018-11-10T13:42:16+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</loc>
     <lastmod>2018-08-11T21:05:26+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/node.js/</loc>
     <lastmod>2018-08-11T21:05:26+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/python/</loc>
     <lastmod>2018-08-11T21:05:26+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/tips/</loc>
     <lastmod>2018-08-11T21:05:26+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/ios/</loc>
     <lastmod>2018-07-17T19:03:07+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/vim/</loc>
     <lastmod>2018-07-17T19:03:07+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2018-07-17-vim-you-are-holding-it-wrong/</loc>
     <lastmod>2018-07-17T19:03:07+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/headless-chrome/</loc>
     <lastmod>2018-07-05T17:17:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/mocha/</loc>
     <lastmod>2018-07-05T17:17:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/</loc>
     <lastmod>2018-07-05T17:17:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/phantom.js/</loc>
     <lastmod>2018-07-05T17:17:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/polymer/</loc>
     <lastmod>2018-07-05T17:17:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/posts/2018-04-15-the-six-areas-to-improve-as-a-developer/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/community/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/development/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/git/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/privacy/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/security/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/style/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fedorov.dev/tags/tdd/</loc>
     <lastmod>2018-04-15T20:14:32+03:00</lastmod>
   </url>
-  
 </urlset>

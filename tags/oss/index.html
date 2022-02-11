@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>oss &middot; Yury Fedorov (@orlangure)</title>
+    <title>oss | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,19 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="oss"/>
-    <meta property="og:description" content="Software developer. Maintainer of [Gnomock](https://github.com/orlangure/gnomock). Sometimes I write about the tech I use. Opinions are personal."/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/tags/oss/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -40,7 +30,6 @@
  
     
     <link rel="alternate" type="application/rss+xml" href="https://fedorov.dev/tags/oss/index.xml" title="Yury Fedorov (@orlangure)" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -53,8 +42,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -64,6 +52,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -146,15 +135,25 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
 
@@ -169,9 +168,8 @@ if (!doNotTrack) {
                 </a>
             </h2>
             <div>
-                <p>
-                Gnomock had a very extensive test suite since the very beginning. The tests ran on Github Actions and CircleCI platforms, on Linux, to make sure that both CI/CD platforms are properly supported. After all, Gnomock is used during CI, and not only locally.
-                </p>
+                <p>Gnomock had a very extensive test suite since the very beginning. The tests ran on Github Actions and CircleCI platforms, on Linux, to make sure that both CI/CD platforms are properly supported. After all, Gnomock is used during CI, and not only locally.</p>
+                
             </div>
             <div class="post-footer">
             <time>June 4, 2021</time>
@@ -187,10 +185,9 @@ if (!doNotTrack) {
                 </a>
             </h2>
             <div>
-                <p>
-                A recent Gnomock release v0.10.0 brought a new integration with it: k3s preset that allows integration testing of Kubernetes automation tools written in Go.
-This new preset creates a docker container that runs a single node k3s (lightweight Kubernetes) cluster in it. It uses orlangure/k3s docker image that has many k3s versions available as tags.
-                </p>
+                <p>A recent Gnomock release v0.10.0 brought a new integration with it: k3s preset that allows integration testing of Kubernetes automation tools written in Go.
+This new preset creates a docker container that runs a single node k3s (lightweight Kubernetes) cluster in it. It uses orlangure/k3s docker image that has many k3s versions available as tags.</p>
+                
             </div>
             <div class="post-footer">
             <time>November 6, 2020</time>
@@ -206,9 +203,8 @@ This new preset creates a docker container that runs a single node k3s (lightwei
                 </a>
             </h2>
             <div>
-                <p>
-                Kafka message broker is a popular choice for Go programs that require high performance and great scalability. In this post I&rsquo;m going to demonstrate an easy way to build integration tests for such applications. These tests won&rsquo;t need any mocks: they use a real Kafka instance under the hood, giving the most confidence that everything works correctly.
-                </p>
+                <p>Kafka message broker is a popular choice for Go programs that require high performance and great scalability. In this post I&rsquo;m going to demonstrate an easy way to build integration tests for such applications. These tests won&rsquo;t need any mocks: they use a real Kafka instance under the hood, giving the most confidence that everything works correctly.</p>
+                
             </div>
             <div class="post-footer">
             <time>September 26, 2020</time>
@@ -224,9 +220,8 @@ This new preset creates a docker container that runs a single node k3s (lightwei
                 </a>
             </h2>
             <div>
-                <p>
-                I like writing integration tests for my Go code. They give me confidence that everything works as expected. This was one of the reasons I built Gnomock (an integration and end-to-end toolkit based on Docker): to easily write tests for code that uses databases or other external services, like AWS S3 or Splunk.
-                </p>
+                <p>I like writing integration tests for my Go code. They give me confidence that everything works as expected. This was one of the reasons I built Gnomock (an integration and end-to-end toolkit based on Docker): to easily write tests for code that uses databases or other external services, like AWS S3 or Splunk.</p>
+                
             </div>
             <div class="post-footer">
             <time>June 27, 2020</time>
@@ -242,9 +237,8 @@ This new preset creates a docker container that runs a single node k3s (lightwei
                 </a>
             </h2>
             <div>
-                <p>
-                A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.
-                </p>
+                <p>A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.</p>
+                
             </div>
             <div class="post-footer">
             <time>April 11, 2020</time>
@@ -260,10 +254,9 @@ This new preset creates a docker container that runs a single node k3s (lightwei
                 </a>
             </h2>
             <div>
-                <p>
-                I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
-In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.
-                </p>
+                <p>I recently added a new feature to Gnomock: an option to forward docker container logs to a user-provided io.Writer implementation.
+In short, Gnomock spins up popular tools inside temporary docker containers and allows Go applications to run tests against them very easily. Each supported 3rd party tool is a Preset, and anybody can implement any preset they want.</p>
+                
             </div>
             <div class="post-footer">
             <time>March 27, 2020</time>
@@ -274,9 +267,9 @@ In short, Gnomock spins up popular tools inside temporary docker containers and 
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -351,12 +344,24 @@ In short, Gnomock spins up popular tools inside temporary docker containers and 
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

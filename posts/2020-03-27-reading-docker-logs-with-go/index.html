@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Reading docker container logs with Go &middot; Yury Fedorov (@orlangure)</title>
+    <title>Reading docker container logs with Go | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,19 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Reading docker container logs with Go"/>
-    <meta property="og:description" content="Although reading docker container logs using Go Docker SDK seems easy, there is one pitfall"/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/posts/2020-03-27-reading-docker-logs-with-go/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -38,7 +28,6 @@
     
     
  
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -51,8 +40,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -62,6 +50,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -144,17 +133,28 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
+
 <h1 class="post-title">Reading docker container logs with Go</h1>
     
     <time>March 27, 2020</time>
@@ -176,14 +176,14 @@ development: when things fail, it is unclear what is wrong.</p>
 <code>MYSQL_ROOT_PASSWORD</code> for the container to work. While working on healthcheck
 implementation for this preset, I got stuck while trying to open a connection
 to a fresh database. I saw that the container appeared in <code>docker container ls</code>, but the preset simply didn&rsquo;t work. I then used <code>docker container logs mysql-container</code> to see the following:</p>
-<pre><code>...
+<pre tabindex="0"><code>...
 You need to specify one of MYSQL_ROOT_PASSWORD,
 MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD
 </code></pre><p>If Gnomock could display these logs automatically, on demand, without the need
 to manually view container logs, that would be great! <a href="https://pkg.go.dev/github.com/docker/docker/client?tab=doc">Docker SDK for
 Go</a> supported
 viewing container logs, so the task seemed easy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
 		<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;container_id&#34;</span>, <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">ContainerLogsOptions</span>{}
 )
 <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
@@ -203,7 +203,7 @@ like logs surrounded by lots of white space.</p>
 <a href="https://pkg.go.dev/github.com/docker/docker/pkg/stdcopy?tab=doc">stdcopy</a>
 package, that includes a function to strip these bytes and copy actual logs
 only:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">reader</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">ContainerLogs</span>(
 		<span style="color:#a6e22e">ctx</span>, <span style="color:#e6db74">&#34;container_id&#34;</span>, <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">ContainerLogsOptions</span>{}
 )
 <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
@@ -226,6 +226,8 @@ logs from your docker containers.</p>
     </div>
     
 
+    
+
     <div class="page-footer">
         
         <hr class="footer-divider">
@@ -244,9 +246,9 @@ logs from your docker containers.</p>
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -321,12 +323,24 @@ logs from your docker containers.</p>
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

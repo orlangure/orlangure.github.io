@@ -6,11 +6,11 @@
     <description>Recent content in s3 on Yury Fedorov (@orlangure)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2020 19:05:51 +0300</lastBuildDate><atom:link href="https://fedorov.dev/tags/s3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Apr 2020 19:05:51 +0000</lastBuildDate><atom:link href="https://fedorov.dev/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing Go&#43;S3 with Gnomock and Localstack</title>
       <link>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</link>
-      <pubDate>Sat, 11 Apr 2020 19:05:51 +0300</pubDate>
+      <pubDate>Sat, 11 Apr 2020 19:05:51 +0000</pubDate>
       
       <guid>https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/</guid>
       <description>A few months ago I built gompress: a simple utility that takes a location in AWS S3, compresses all the files in it with GZIP, and puts them in another location, also in S3, optionally keeping or removing the original files. It was something I wrote to use once on a large S3 bucket full of uncompressed CSV files, and published it for anyone else who might need it.</description>

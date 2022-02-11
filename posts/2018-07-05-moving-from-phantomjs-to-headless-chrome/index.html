@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Moving from PhantomJS to Chrome &middot; Yury Fedorov (@orlangure)</title>
+    <title>Moving from PhantomJS to Chrome | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,19 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Moving from PhantomJS to Chrome"/>
-    <meta property="og:description" content="Migrating automated UI tests from PhantomJS to headless Chrome"/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/posts/2018-07-05-moving-from-phantomjs-to-headless-chrome/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -38,7 +28,6 @@
     
     
  
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -51,8 +40,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -62,6 +50,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -144,17 +133,28 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
+
 <h1 class="post-title">Moving from PhantomJS to Chrome</h1>
     
     <time>July 5, 2018</time>
@@ -177,7 +177,7 @@ couple of places. The interesting part came later, when I saw the results of
 the same tests we ran before.</p>
 <p>The first interesting thing I found was that PhantomJS did not mention the
 assertion failure in the below code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
     <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
         <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
@@ -190,7 +190,7 @@ assertion failure in the below code:</p>
 </span></code></pre></div><p>Of course, you say, it&rsquo;s an asynchronous test, you missed the <code>done()</code>
 callback! And you are 100% percent right. But&hellip;  This code slipped into
 production and was left there unnoticed. Until we made the move:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// PhantomJS tests
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// PhantomJS tests
 </span><span style="color:#75715e">//   ✓ should fail with false condition
 </span><span style="color:#75715e">//
 </span><span style="color:#75715e">// 1 passing (12ms)
@@ -199,7 +199,7 @@ production and was left there unnoticed. Until we made the move:</p>
 </span></code></pre></div><p>Did you notice the <code>AssertionError</code> on the last line? That was a clear sign
 that something was wrong. After being pointed directly to a bad test, it was a
 matter of minutes to figure out it was broken, and fix it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">done</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">done</span>) {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
     <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
         <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
@@ -222,7 +222,7 @@ initializer</a>
 somewhere inside a component&rsquo;s code. In PhantomJS, it <a href="https://stackoverflow.com/questions/29736114/how-to-use-es6-with-phantomjs">broke the entire
 test</a>
 silently, without showing related errors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- component code --&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- component code --&gt;</span>
 &lt;<span style="color:#f92672">dom-module</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meh-meh&#34;</span>&gt;
     &lt;<span style="color:#f92672">template</span>&gt;
         &lt;<span style="color:#f92672">div</span>&gt;
@@ -245,7 +245,7 @@ silently, without showing related errors.</p>
         });
     &lt;/<span style="color:#f92672">script</span>&gt;
 &lt;/<span style="color:#f92672">dom-module</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test code
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test code
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">it</span>.<span style="color:#a6e22e">only</span>(<span style="color:#e6db74">&#39;should have el.$ object&#39;</span>, <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;meh-meh&#39;</span>);
     <span style="color:#a6e22e">el</span>[<span style="color:#e6db74">&#39;item&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;an item&#39;</span>;
@@ -264,6 +264,8 @@ small change in <code>package.json</code>.</p>
 
         </p>
     </div>
+    
+
     
 
     <div class="page-footer">
@@ -286,9 +288,9 @@ small change in <code>package.json</code>.</p>
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -363,12 +365,24 @@ small change in <code>package.json</code>.</p>
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

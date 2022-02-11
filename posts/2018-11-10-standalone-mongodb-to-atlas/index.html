@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Migrating standalone Mongo to Atlas &middot; Yury Fedorov (@orlangure)</title>
+    <title>Migrating standalone Mongo to Atlas | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,19 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Migrating standalone Mongo to Atlas"/>
-    <meta property="og:description" content="How we moved from a standalone MongoDB instance to Atlas"/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/posts/2018-11-10-standalone-mongodb-to-atlas/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -38,7 +28,6 @@
     
     
  
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -51,8 +40,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -62,6 +50,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -144,17 +133,28 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
+
 <h1 class="post-title">Migrating standalone Mongo to Atlas</h1>
     
     <time>November 10, 2018</time>
@@ -208,7 +208,7 @@ the process could be started.</p>
 <p>At first, I needed to convert our standalone MongoDB deployment to a single
 node replica set, since it was impossible to migrate a standalone instance to
 Atlas directly. This step is covered in most of the guides:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># /etc/mongod.conf</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># /etc/mongod.conf</span>
 <span style="color:#f92672">replication</span>:
   <span style="color:#f92672">replSetName</span>: <span style="color:#ae81ff">rs0</span>
 </code></pre></div><p>followed by service restart. This part is quick and causes very little down
@@ -241,7 +241,7 @@ some of them that they were supposed to take a long time to complete; these
 jobs were killed and restarted. Other jobs were given some time to complete.</p>
 <p>To tell how many connections were left to the legacy instance, we used the
 following command:</p>
-<pre><code>netstat -tn 2&gt;/dev/null | grep :27017 | awk '{print $5}' | \
+<pre tabindex="0"><code>netstat -tn 2&gt;/dev/null | grep :27017 | awk '{print $5}' | \
 cut -d: -f1 | sort | uniq -c | sort -nr | head
 </code></pre><p>We waited for some time until we saw only Atlas IP addresses in the output. It
 was the point where everything was connected to Atlas. We shut the old node
@@ -255,6 +255,8 @@ staging and very methodical and cautious process in production.</p>
 
         </p>
     </div>
+    
+
     
 
     <div class="page-footer">
@@ -271,9 +273,9 @@ staging and very methodical and cautious process in production.</p>
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -348,12 +350,24 @@ staging and very methodical and cautious process in production.</p>
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

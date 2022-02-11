@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Code coverage in end-to-end/integration Go tests &middot; Yury Fedorov (@orlangure)</title>
+    <title>Code coverage in end-to-end/integration Go tests | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,19 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Code coverage in end-to-end/integration Go tests"/>
-    <meta property="og:description" content="Getting test coverage reports for complex end-to-end or integration tests in Go programs"/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -38,7 +28,6 @@
     
     
  
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -51,8 +40,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -62,6 +50,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -144,17 +133,28 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
+
 <h1 class="post-title">Code coverage in end-to-end/integration Go tests</h1>
     
     <time>June 27, 2020</time>
@@ -168,6 +168,14 @@ toolkit based on Docker): to easily write tests for code that uses databases or
 other external services, like <a href="https://fedorov.dev/posts/2020-04-11-testing-go-s3-gnomock-localstack/">AWS
 S3</a> or
 Splunk.</p>
+<blockquote>
+<small>
+<strong>Update 2022-02-11</strong>: I also like viewing coverage reports with
+comfort, so I wrote <strong><a href="https://github.com/orlangure/gocovsh"
+target="_blank">gocovsh</a></strong> as well: a <strong>Go coverage
+viewer</strong> for the CLI. More about it down below.
+</small>
+</blockquote>
 <p>I often put integration and end-to-end tests either into a separate package, or
 into the <code>main</code> package (<code>main_test</code> in the project root). I had one problem
 with it: <strong>code coverage reports</strong> were not good enough, they skipped entire
@@ -178,7 +186,7 @@ the following command:</p>
 <a href="https://github.com/orlangure/crud-demo">demo</a> app, which has an integration
 test, and two packages: <code>models</code> and <code>handlers</code>.</p>
 </blockquote>
-<pre><code>$ go test -race -cover
+<pre tabindex="0"><code>$ go test -race -cover
 
 PASS
 coverage: 0.0% of statements
@@ -188,13 +196,13 @@ wrong. The issue was that the <strong>coverage report ignored sub-packages</stro
 (<code>models</code> and <code>handlers</code>), which had all the important things in them.</p>
 <p>Turns out there is a <code>-coverpkg</code> flag that allows to select a package for the
 <strong>coverage report</strong>:</p>
-<pre><code>$ go test -race -cover -coverpkg ./handlers
+<pre tabindex="0"><code>$ go test -race -cover -coverpkg ./handlers
 
 PASS
 coverage: 58.1% of statements in ./handlers
 ok      github.com/orlangure/crud-demo  20.617s
 </code></pre><p>It is even possible to <strong>report coverage for all sub-packages</strong>:</p>
-<pre><code>$ go test -race -cover -coverpkg ./...
+<pre tabindex="0"><code>$ go test -race -cover -coverpkg ./...
 
 PASS
 coverage: 58.7% of statements in ./...
@@ -202,14 +210,14 @@ ok      github.com/orlangure/crud-demo  19.845s
 </code></pre><p>This information is more useful than <code>coverage: 0.0%</code>, but not useful enough.
 To add more details, <strong>coverage report can be saved into a file</strong> for further
 processing:</p>
-<pre><code>$ go test -race -cover -coverpkg ./... -coverprofile cover.out
+<pre tabindex="0"><code>$ go test -race -cover -coverpkg ./... -coverprofile coverage.out
 
 PASS
 coverage: 58.7% of statements in ./...
 ok      github.com/orlangure/crud-demo  21.038s
 </code></pre><p>The output looks the same, but a new file appears in the current directory. We
 can extract a more detailed report from it:</p>
-<pre><code>$ go tool cover -func cover.out
+<pre tabindex="0"><code>$ go tool cover -func coverage.out
 
 &lt;skipped&gt;/handlers/handlers.go:14: CreateThingHandler      63.6%
 &lt;skipped&gt;/handlers/handlers.go:36: GetThingByNameHandler   57.1%
@@ -225,7 +233,7 @@ total:                             (statements)            58.7%
 zero coverage. This can be improved easily by adding another test. What about
 other functions with non-zero coverage? <strong>What did the tests miss?</strong></p>
 <p>There is another useful <code>go tool</code> feature:</p>
-<pre><code>$ go tool cover -html cover.out
+<pre tabindex="0"><code>$ go tool cover -html coverage.out
 </code></pre><img src="/coverage-html.png" width="100%"/>
 <p>This report includes coverage for every line of code. It appears that none of
 the errors were tested 😿</p>
@@ -233,16 +241,48 @@ the errors were tested 😿</p>
 each line of code was hit! This option is set by default when <code>-race</code> flag is
 used, or can be allowed with <code>-covermode atomic</code> flag. Read more about
 supported flags <a href="https://golang.org/cmd/go/#hdr-Testing_flags">here</a>.</p>
-<h2 id="summary">Summary</h2>
+<h3 id="viewing-coverage-report-from-the-command-line">Viewing coverage report from the command line</h3>
+<p>Using the built-in <code>go tool cover</code> does the job, but the more I used it, the
+more I struggled with it, especially in large codebases: the file picker at the
+top does not support searching, there were no line numbers, and the code
+navigation was not easy. To solve some of these issues, I built
+<a href="https://github.com/orlangure/gocovsh"><code>gocovsh</code></a> - a <strong>CLI program to view Go
+coverage reports</strong> with comfort of your own terminal:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ brew install orlangure/tap/gocovsh
+$ gocovsh
+<span style="color:#75715e"># or use a custom profile name</span>
+$ gocovsh --profile cover.profile
+</code></pre></div><img src="/coverage-list.png" width="100%"/>
+<img src="/coverage-code.png" width="100%"/>
+<h3 id="bonus-a-useful-zsh-function">Bonus: a useful <code>zsh</code> function</h3>
+<p>I had to <strong>run Go tests with coverage</strong> so many times, that I added a simple
+shortcut to my <code>~/.zshrc</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#66d9ef">function</span> gotest <span style="color:#f92672">{</span>
+    pkg<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>1<span style="color:#66d9ef">:-</span>.<span style="color:#e6db74">}</span>
+    run<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>2<span style="color:#66d9ef">:-</span>.<span style="color:#e6db74">}</span>
+
+    go test -v -race -coverprofile<span style="color:#f92672">=</span>coverage.out -coverpkg ./... <span style="color:#e6db74">&#34;</span>$pkg<span style="color:#e6db74">&#34;</span> -run <span style="color:#e6db74">&#34;</span>$run<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># usage:</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># gotest</span>
+<span style="color:#75715e"># gotest ./handlers</span>
+<span style="color:#75715e"># gotest ./handlers TestThing</span>
+</code></pre></div><h2 id="summary">Summary</h2>
 <p>Integration tests are great to build confidence in your code, but coverage
 reports of such tests in Go can be tricky. Use <code>-coverpkg</code> and <code>-coverprofile</code>
-flags to get more details from test coverage reports, and use <code>go tool cover -html</code> to view the results in a browser.</p>
+flags to get more details from test coverage reports, and use <code>go tool cover -html</code> to view the results in a browser or
+<a href="https://github.com/orlangure/gocovsh"><code>gocovsh</code></a> to explore the coverage
+report from the CLI.</p>
 <p>If your code relies on external services, like databases or AWS,
 <a href="https://github.com/orlangure/gnomock">Gnomock</a> can be useful for writing
 integration or end-to-end tests.</p>
 
         </p>
     </div>
+    
+
     
 
     <div class="page-footer">
@@ -253,7 +293,9 @@ integration or end-to-end tests.</p>
         
             <a class="tag" href="/tags/gnomock">#gnomock</a>
         
-            <a class="tag" href="/tags/coverage">#coverage</a>
+            <a class="tag" href="/tags/gocovsh">#gocovsh</a>
+        
+            <a class="tag" href="/tags/coverage">#coverage&#39;</a>
         
             <a class="tag" href="/tags/integration-testing">#integration-testing</a>
         
@@ -269,9 +311,9 @@ integration or end-to-end tests.</p>
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -346,12 +388,24 @@ integration or end-to-end tests.</p>
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Testing Kubernetes automation tools with Gnomock &middot; Yury Fedorov (@orlangure)</title>
+    <title>Testing Kubernetes automation tools with Gnomock | Yury Fedorov (@orlangure)</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,22 +17,9 @@
     <meta name="theme-color" content="#ffffff">
 
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Testing Kubernetes automation tools with Gnomock"/>
-    <meta property="og:description" content="Integration tests for Kubernetes automation tools powered by Gnomock"/>
-    <meta property="og:site_name" content="Yury Fedorov (@orlangure)"/>
-    <meta property="og:url" content="https://fedorov.dev/posts/2020-11-06-testing-kubernetes-automation-tools-gnomock/"/>
-    <meta property="og:locale" content="en">
-    
-    <meta property="og:image" content="https://fedorov.dev/gnomock-kubernetes-og.png"/>
-    <meta property="og:image:secure_url" content="https://fedorov.dev/gnomock-kubernetes-og.png"/>
-    
-    <meta property="og:type" content="website"/>
-
     
     
-    
-    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.364181395f068614d02615981b918adfd0601b252899e92b7dd17982855dd4e8.css"/>
+    <link rel="stylesheet" href="https://fedorov.dev/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -41,7 +28,6 @@
     
     
  
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -54,8 +40,7 @@ if (!doNotTrack) {
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
-</script>
-</head>
+</script></head>
 
     <body>
         
@@ -65,6 +50,7 @@ if (!doNotTrack) {
         <a href="/">Yury Fedorov (@orlangure)</a>
     </div>  
 </header>
+
   <div class="nav-menu">
   
     <a class="color-link nav-link" href="/about/">About</a>
@@ -147,17 +133,28 @@ if (!doNotTrack) {
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+    <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+    <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
+
         <div id="content" class="content-container">
         
+
 <h1 class="post-title">Testing Kubernetes automation tools with Gnomock</h1>
     
     <time>November 6, 2020</time>
@@ -214,7 +211,7 @@ configuration in <code>arkade</code>).</p>
 </blockquote>
 <h2 id="actual-testing">Actual testing</h2>
 <p>I chose to put the entire test in <code>cmd_test.go</code> file. The following dependencies need to be imported:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
 	<span style="color:#e6db74">&#34;context&#34;</span>
 	<span style="color:#e6db74">&#34;fmt&#34;</span>
 	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
@@ -230,7 +227,7 @@ configuration in <code>arkade</code>).</p>
 )
 </code></pre></div><h3 id="temporary-kubernetes-in-docker-container-setup">Temporary Kubernetes-in-Docker container setup</h3>
 <p>Creating a clean Kubernetes cluster for our tests was very easy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
 	<span style="color:#a6e22e">c</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Start</span>(
 		<span style="color:#a6e22e">k3s</span>.<span style="color:#a6e22e">Preset</span>(<span style="color:#a6e22e">k3s</span>.<span style="color:#a6e22e">WithVersion</span>(<span style="color:#e6db74">&#34;v1.19.3&#34;</span>)),
 		<span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">WithContainerName</span>(<span style="color:#e6db74">&#34;gnomock-k3s&#34;</span>),
@@ -244,7 +241,7 @@ configuration in <code>arkade</code>).</p>
 </code></pre></div><p>Using existing <code>orlangure/k3s</code> tags it would be easy to write tests against
 multiple supported Kubernetes versions.</p>
 <h3 id="configuring-kubectl-to-use-our-temporary-container">Configuring <code>kubectl</code> to use our temporary container</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
     <span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>
 	<span style="color:#a6e22e">cfgBytes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">k3s</span>.<span style="color:#a6e22e">ConfigBytes</span>(<span style="color:#a6e22e">c</span>)
@@ -270,7 +267,7 @@ testing process and its children.</p>
 <h3 id="setting-up-kubernetes-client">Setting up Kubernetes client</h3>
 <p>In order to verify our requirements, a Kubernetes client in Go needs to be
 configured to access the same temporary cluster:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestInstall</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
     <span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span>
 	<span style="color:#a6e22e">cfg</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">k3s</span>.<span style="color:#a6e22e">Config</span>(<span style="color:#a6e22e">c</span>)
@@ -284,7 +281,7 @@ directly to create a new client.</p>
 <h3 id="testing-download-feature">Testing download feature</h3>
 <p>To make sure that <code>kubectl</code> command is available, the following test is
 executed:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#e6db74">&#34;install cli tools&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#e6db74">&#34;install cli tools&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
     <span style="color:#a6e22e">command</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">MakeGet</span>()
     <span style="color:#a6e22e">command</span>.<span style="color:#a6e22e">SetArgs</span>([]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;kubectl&#34;</span>})
     <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">command</span>.<span style="color:#a6e22e">Execute</span>())
@@ -301,7 +298,7 @@ correctly.</p>
 <p>At this point, we already have a running and ready to use Kubernetes cluster
 inside a docker container, and all the tools and configuration required to
 access it. It&rsquo;s time to add the actual test:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#e6db74">&#34;openfaas&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#e6db74">&#34;openfaas&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
     <span style="color:#a6e22e">command</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">MakeInstall</span>()
     <span style="color:#a6e22e">command</span>.<span style="color:#a6e22e">SetArgs</span>([]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;openfaas&#34;</span>})
     <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">command</span>.<span style="color:#a6e22e">Execute</span>())
@@ -337,6 +334,8 @@ write tests for other supported applications.</p>
     </div>
     
 
+    
+
     <div class="page-footer">
         
         <hr class="footer-divider">
@@ -363,9 +362,9 @@ write tests for other supported applications.</p>
 
         
 
-<link rel="stylesheet" type="text/css" href="/css/katex.min.css">
-<script type="text/javascript" src="/js/katex.min.js"></script>
-<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="/css/katex.min.css" crossorigin="anonymous">
+<script type="text/javascript" src="/js/katex.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/auto-render.min.js"onload="renderMathInElement(document.body);" crossorigin="anonymous"></script>
 
         </div>
         <footer class="footer-mobile">
@@ -440,12 +439,24 @@ write tests for other supported applications.</p>
 
     
 
+    
+
+    
+
+    
+
 </div>
 
 
 
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I="></script>
+	<div class="footer-mobile-links">
+        <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
+		<span class="divider-bar">|</span>
+        <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
+	</div>
+
+	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

@@ -147,7 +147,7 @@ if (!doNotTrack) {
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -208,10 +208,10 @@ the process could be started.</p>
 <p>At first, I needed to convert our standalone MongoDB deployment to a single
 node replica set, since it was impossible to migrate a standalone instance to
 Atlas directly. This step is covered in most of the guides:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># /etc/mongod.conf</span>
-<span style="color:#f92672">replication</span>:
-  <span style="color:#f92672">replSetName</span>: <span style="color:#ae81ff">rs0</span>
-</code></pre></div><p>followed by service restart. This part is quick and causes very little down
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># /etc/mongod.conf</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">replication</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replSetName</span>: <span style="color:#ae81ff">rs0</span>
+</span></span></code></pre></div><p>followed by service restart. This part is quick and causes very little down
 time. Our app knew how to handle short database hiccups, so that was fine.
 Since it was a new replica set, another command was required:
 <a href="https://docs.mongodb.com/manual/reference/method/rs.initiate/"><code>rs.initiate()</code></a>,
@@ -241,7 +241,7 @@ some of them that they were supposed to take a long time to complete; these
 jobs were killed and restarted. Other jobs were given some time to complete.</p>
 <p>To tell how many connections were left to the legacy instance, we used the
 following command:</p>
-<pre tabindex="0"><code>netstat -tn 2&gt;/dev/null | grep :27017 | awk '{print $5}' | \
+<pre tabindex="0"><code>netstat -tn 2&gt;/dev/null | grep :27017 | awk &#39;{print $5}&#39; | \
 cut -d: -f1 | sort | uniq -c | sort -nr | head
 </code></pre><p>We waited for some time until we saw only Atlas IP addresses in the output. It
 was the point where everything was connected to Atlas. We shut the old node
@@ -367,7 +367,7 @@ staging and very methodical and cautious process in production.</p>
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

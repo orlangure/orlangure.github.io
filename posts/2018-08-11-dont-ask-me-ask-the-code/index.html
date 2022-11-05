@@ -147,7 +147,7 @@ if (!doNotTrack) {
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -182,15 +182,15 @@ much for interpretation.  I implement the situations in such questions and let
 the code find the answer.</p>
 <p>Below is a short piece of code I wrote to demonstrate that a promise can be
 only settled once:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// you can copy the code into browser&#39;s console
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">fulfill</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
-	<span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">reject</span>, <span style="color:#ae81ff">1000</span>);
-	<span style="color:#a6e22e">fulfill</span>();
-});
-
-<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">then</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;fulfilled!&#39;</span>))
-	.<span style="color:#66d9ef">catch</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;rejected!&#39;</span>));
-</code></pre></div><p>It prints <code>fulfilled!</code> and nothing more. It is not a theory, it is not my
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// you can copy the code into browser&#39;s console
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">fulfill</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">reject</span>, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fulfill</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">then</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;fulfilled!&#39;</span>))
+</span></span><span style="display:flex;"><span>	.<span style="color:#66d9ef">catch</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;rejected!&#39;</span>));
+</span></span></code></pre></div><p>It prints <code>fulfilled!</code> and nothing more. It is not a theory, it is not my
 ability to remember things from documentation, not an assumption. It is code
 that works in a certain way, and you cannot argue with that.</p>
 <p>Another example of a similar discussion happened to me while working on a
@@ -199,21 +199,21 @@ related code, brought it up, and instead of trying to explain why <a href="https
 point
 operations</a>
 are hard, I wrote a very short piece of code that did so for me:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#ae81ff">0.3</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>)
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#ae81ff">0.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0.1</span>)
-}
-
-<span style="color:#75715e">// prints
-</span><span style="color:#75715e">// 0.1
-</span><span style="color:#75715e">// false
-</span></code></pre></div><p>It was very easy to prove my point by demonstrating it in action. It could be
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#ae81ff">0.3</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#ae81ff">0.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0.1</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// prints
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 0.1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// false
+</span></span></span></code></pre></div><p>It was very easy to prove my point by demonstrating it in action. It could be
 very hard to explain the logic behind it.</p>
 <p>My point is that it is very easy to write short pieces of code. You don&rsquo;t even
 have to open up an editor!  I can&rsquo;t recall even a single time where I needed an
@@ -346,7 +346,7 @@ someone.</p>
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

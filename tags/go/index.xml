@@ -70,7 +70,7 @@ In short, Gnomock spins up popular tools inside temporary docker containers and 
       
       <guid>https://fedorov.dev/posts/2018-08-11-dont-ask-me-ask-the-code/</guid>
       <description>How many times did you find yourself in an argument about whether or not a certain detail in some programming language or framework was implemented in a certain way? I&amp;rsquo;m talking about questions like these ones:
- Can a JS promise be rejected after resolution?</description>
+Can a JS promise be rejected after resolution?</description>
     </item>
     
   </channel>

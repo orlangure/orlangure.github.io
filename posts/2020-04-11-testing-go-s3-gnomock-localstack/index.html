@@ -147,7 +147,7 @@ if (!doNotTrack) {
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -206,55 +206,55 @@ testing</a></p>
 wasn&rsquo;t really possible to test anything easily. There were a few problems:</p>
 <h4 id="moving-execution-to-sub-package">Moving execution to sub-package</h4>
 <p>Actual execution code was originally inside <code>main</code> function:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">conf</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newConfig</span>()
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">src</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newClient</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcRegion</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcBucket</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcPrefix</span>)
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newClient</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstRegion</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstBucket</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstPrefix</span>)
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">errors</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">listFiles</span>()
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">worker</span>{<span style="color:#a6e22e">src</span>, <span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">keepOriginal</span>}
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">start</span>(<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">wg</span>)
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>Even though it worked, this code was hard to test: I needed to actually run the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">conf</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newConfig</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">src</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newClient</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcRegion</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcBucket</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">srcPrefix</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newClient</span>(<span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstRegion</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstBucket</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">dstPrefix</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">errors</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">src</span>.<span style="color:#a6e22e">listFiles</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">worker</span>{<span style="color:#a6e22e">src</span>, <span style="color:#a6e22e">dst</span>, <span style="color:#a6e22e">conf</span>.<span style="color:#a6e22e">keepOriginal</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">start</span>(<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">wg</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Even though it worked, this code was hard to test: I needed to actually run the
 program to trigger whatever actions were taken by it. Such tests won&rsquo;t benefit
 from Go&rsquo;s coverage reports, race detector, or debugging.  That&rsquo;s how all the
 application logic moved to <code>gompress</code> package inside <code>gompress</code> repository.
 From that point forward, <code>main</code> included only configuration using
 <a href="https://golang.org/pkg/flag/"><code>flag</code></a> package, and a call to
 <a href="https://github.com/orlangure/gompress/blob/0a02e95787ad02609511dd8c628c3b9f3b7112c2/gompress/gompress.go#L13"><code>gompress.Run</code></a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">conf</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newConfig</span>()
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">conf</span>)
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h4 id="s3-endpoint-configuration">S3 Endpoint configuration</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">conf</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">newConfig</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">conf</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h4 id="s3-endpoint-configuration">S3 Endpoint configuration</h4>
 <p>The next step was to <strong>instruct AWS SDK to use a custom endpoint</strong> whenever it
 needed to access S3. <code>Config</code> type was made public, and it got a new field:
 <code>Endpoint</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Config defines how gompress will process the files
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Config</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// Endpoint is used for tests to override default s3 endpoint
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Endpoint</span> <span style="color:#66d9ef">string</span>
-}
-</code></pre></div><p>This new field was used every time the code created a new AWS session:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">config</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Config</span>{<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#e6db74">&#34;us-east-1&#34;</span>)}
-
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> {
-	<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">Endpoint</span> = <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">endpoint</span>)
-	<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">S3ForcePathStyle</span> = <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Bool</span>(<span style="color:#66d9ef">true</span>)
-}
-
-<span style="color:#a6e22e">sess</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">session</span>.<span style="color:#a6e22e">NewSession</span>(<span style="color:#a6e22e">config</span>)
-<span style="color:#75715e">// ...
-</span></code></pre></div><p>Here, two AWS SDK for Go parameters are used:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// Config defines how gompress will process the files
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Config</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Endpoint is used for tests to override default s3 endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Endpoint</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This new field was used every time the code created a new AWS session:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">config</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Config</span>{<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#e6db74">&#34;us-east-1&#34;</span>)}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">Endpoint</span> = <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">endpoint</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">S3ForcePathStyle</span> = <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Bool</span>(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sess</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">session</span>.<span style="color:#a6e22e">NewSession</span>(<span style="color:#a6e22e">config</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><p>Here, two AWS SDK for Go parameters are used:
 <a href="https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config"><code>Endpoint</code></a>, which is
 an address of S3 service, and
 <a href="https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config"><code>S3ForcePathStyle</code></a>,
@@ -279,25 +279,25 @@ itself</a>.
 First, I needed a running instance of localstack, with all my test files
 already inside it. It was an easy task with
 <a href="https://github.com/orlangure/gnomock">gnomock</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// create empty folder for output bucket
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">MkdirAll</span>(<span style="color:#e6db74">&#34;./testdata/output-bucket&#34;</span>, <span style="color:#ae81ff">0755</span>)
-<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// use gnomock-localstack preset to spin up S3
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">Preset</span>(
-	<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">WithServices</span>(<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">S3</span>),
-	<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">WithS3Files</span>(<span style="color:#e6db74">&#34;./testdata&#34;</span>),
-)
-<span style="color:#a6e22e">c</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Start</span>(<span style="color:#a6e22e">p</span>)
-
-<span style="color:#75715e">// clean up after we are done
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() { <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Stop</span>(<span style="color:#a6e22e">c</span>) }()
-
-<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// local s3 service is now accessible:
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">s3Endpoint</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;http://%s/&#34;</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Address</span>(<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">S3Port</span>))
-</code></pre></div><p><code>testdata</code> folder already included <code>input-bucket</code> directory, and I needed to
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// create empty folder for output bucket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">MkdirAll</span>(<span style="color:#e6db74">&#34;./testdata/output-bucket&#34;</span>, <span style="color:#ae81ff">0755</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// use gnomock-localstack preset to spin up S3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">Preset</span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">WithServices</span>(<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">S3</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">WithS3Files</span>(<span style="color:#e6db74">&#34;./testdata&#34;</span>),
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">c</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Start</span>(<span style="color:#a6e22e">p</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// clean up after we are done
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() { <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">gnomock</span>.<span style="color:#a6e22e">Stop</span>(<span style="color:#a6e22e">c</span>) }()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// local s3 service is now accessible:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">s3Endpoint</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;http://%s/&#34;</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Address</span>(<span style="color:#a6e22e">localstack</span>.<span style="color:#a6e22e">S3Port</span>))
+</span></span></code></pre></div><p><code>testdata</code> folder already included <code>input-bucket</code> directory, and I needed to
 create an empty <code>output-bucket</code> folder so that <code>gnomock</code> will recreate this
 structure in S3: one bucket for the input, with all the files, and the other
 one for the output, empty.</p>
@@ -310,46 +310,46 @@ keeping the relative paths.</p>
 <p><code>gnomock.Start(p)</code> call is blocking until the container is up, running, and
 includes all the files I wanted it to have.</p>
 <p>With that, I created a new S3 client using AWS SDK and the local container:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">config</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Config</span>{
-	<span style="color:#a6e22e">Region</span>:           <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">region</span>),
-	<span style="color:#a6e22e">Endpoint</span>:         <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">s3Endpoint</span>),
-	<span style="color:#a6e22e">S3ForcePathStyle</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Bool</span>(<span style="color:#66d9ef">true</span>),
-	<span style="color:#a6e22e">Credentials</span>:      <span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">NewStaticCredentials</span>(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>),
-}
-
-<span style="color:#a6e22e">sess</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">session</span>.<span style="color:#a6e22e">NewSession</span>(<span style="color:#a6e22e">config</span>)
-<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">svc</span> = <span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">sess</span>)
-</code></pre></div><h3 id="actual-testing">Actual testing</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">config</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Config</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Region</span>:           <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">region</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Endpoint</span>:         <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">s3Endpoint</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">S3ForcePathStyle</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">Bool</span>(<span style="color:#66d9ef">true</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Credentials</span>:      <span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">NewStaticCredentials</span>(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>),
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sess</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">session</span>.<span style="color:#a6e22e">NewSession</span>(<span style="color:#a6e22e">config</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">svc</span> = <span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">sess</span>)
+</span></span></code></pre></div><h3 id="actual-testing">Actual testing</h3>
 <p>With S3 service running locally in a container, with all the files already
 inside, I started writing the actual test. First, I needed to confirm that the
 original state was as I expected:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// start with 200 files
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">listInput</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">ListObjectsV2Input</span>{<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">inputBucket</span>)}
-<span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">svc</span>.<span style="color:#a6e22e">ListObjectsV2</span>(<span style="color:#a6e22e">listInput</span>)
-<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">err</span>)
-<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">Len</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">files</span>.<span style="color:#a6e22e">Contents</span>, <span style="color:#ae81ff">200</span>)
-</code></pre></div><p>Then, I needed to actually run the code against this S3 service:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">conf</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Config</span>{
-	<span style="color:#a6e22e">Src</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">S3Locaction</span>{
-		<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">region</span>,
-		<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">inputBucket</span>,
-		<span style="color:#a6e22e">Prefix</span>: <span style="color:#e6db74">&#34;a-&#34;</span>,
-	},
-	<span style="color:#a6e22e">Dst</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">S3Locaction</span>{
-		<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">region</span>,
-		<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">outputBucket</span>,
-		<span style="color:#a6e22e">Prefix</span>: <span style="color:#e6db74">&#34;new-dir/&#34;</span>,
-	},
-	<span style="color:#a6e22e">KeepOriginal</span>: <span style="color:#66d9ef">false</span>, <span style="color:#75715e">// remove original files from s3
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Endpoint</span>:	 <span style="color:#a6e22e">s3Endpoint</span>,
-}
-
-<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Setenv</span>(<span style="color:#e6db74">&#34;AWS_ACCESS_KEY_ID&#34;</span>, <span style="color:#e6db74">&#34;foo&#34;</span>))
-<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Setenv</span>(<span style="color:#e6db74">&#34;AWS_SECRET_ACCESS_KEY&#34;</span>, <span style="color:#e6db74">&#34;bar&#34;</span>))
-<span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">conf</span>))
-</code></pre></div><p>Note the AWS credentials environment variables: the original code uses these
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// start with 200 files
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">listInput</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">ListObjectsV2Input</span>{<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">aws</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">inputBucket</span>)}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">files</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">svc</span>.<span style="color:#a6e22e">ListObjectsV2</span>(<span style="color:#a6e22e">listInput</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">Len</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">files</span>.<span style="color:#a6e22e">Contents</span>, <span style="color:#ae81ff">200</span>)
+</span></span></code></pre></div><p>Then, I needed to actually run the code against this S3 service:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">conf</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Config</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Src</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">S3Locaction</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">region</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">inputBucket</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Prefix</span>: <span style="color:#e6db74">&#34;a-&#34;</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Dst</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">S3Locaction</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Region</span>: <span style="color:#a6e22e">region</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Bucket</span>: <span style="color:#a6e22e">outputBucket</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Prefix</span>: <span style="color:#e6db74">&#34;new-dir/&#34;</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">KeepOriginal</span>: <span style="color:#66d9ef">false</span>, <span style="color:#75715e">// remove original files from s3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">Endpoint</span>:	 <span style="color:#a6e22e">s3Endpoint</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Setenv</span>(<span style="color:#e6db74">&#34;AWS_ACCESS_KEY_ID&#34;</span>, <span style="color:#e6db74">&#34;foo&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Setenv</span>(<span style="color:#e6db74">&#34;AWS_SECRET_ACCESS_KEY&#34;</span>, <span style="color:#e6db74">&#34;bar&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">NoError</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">gompress</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">conf</span>))
+</span></span></code></pre></div><p>Note the AWS credentials environment variables: the original code uses these
 credentials to connect, but in tests they don&rsquo;t have to be even close to real
 credentials.</p>
 <p>You can see the rest of the code in the <a href="https://github.com/orlangure/gompress/blob/v0.1.2/gompress/gompress_test.go">test
@@ -490,7 +490,7 @@ service without any mocks.</p>
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

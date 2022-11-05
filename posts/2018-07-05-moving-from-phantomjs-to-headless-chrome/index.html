@@ -147,7 +147,7 @@ if (!doNotTrack) {
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -177,44 +177,44 @@ couple of places. The interesting part came later, when I saw the results of
 the same tests we ran before.</p>
 <p>The first interesting thing I found was that PhantomJS did not mention the
 assertion failure in the below code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>() {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
-        <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
-    }, <span style="color:#ae81ff">10</span>);
-});
-<span style="color:#75715e">// PhantomJS tests
-</span><span style="color:#75715e">//     ✓ should fail with false condition
-</span><span style="color:#75715e">//
-</span><span style="color:#75715e">//   1 passing (4ms));
-</span></code></pre></div><p>Of course, you say, it&rsquo;s an asynchronous test, you missed the <code>done()</code>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// PhantomJS tests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     ✓ should fail with false condition
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   1 passing (4ms));
+</span></span></span></code></pre></div><p>Of course, you say, it&rsquo;s an asynchronous test, you missed the <code>done()</code>
 callback! And you are 100% percent right. But&hellip;  This code slipped into
 production and was left there unnoticed. Until we made the move:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// PhantomJS tests
-</span><span style="color:#75715e">//   ✓ should fail with false condition
-</span><span style="color:#75715e">//
-</span><span style="color:#75715e">// 1 passing (12ms)
-</span><span style="color:#75715e">//
-</span><span style="color:#75715e">// [Error: AssertionError]
-</span></code></pre></div><p>Did you notice the <code>AssertionError</code> on the last line? That was a clear sign
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// PhantomJS tests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   ✓ should fail with false condition
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 1 passing (12ms)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// [Error: AssertionError]
+</span></span></span></code></pre></div><p>Did you notice the <code>AssertionError</code> on the last line? That was a clear sign
 that something was wrong. After being pointed directly to a bad test, it was a
 matter of minutes to figure out it was broken, and fix it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">done</span>) {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
-        <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
-        <span style="color:#a6e22e">done</span>();
-    }, <span style="color:#ae81ff">10</span>);
-});
-<span style="color:#75715e">//     1) should fail with false condition
-</span><span style="color:#75715e">// [Error: AssertionError]
-</span><span style="color:#75715e">//
-</span><span style="color:#75715e">//   0 passing (23ms)
-</span><span style="color:#75715e">//   1 failing
-</span><span style="color:#75715e">//
-</span><span style="color:#75715e">//   1) PhantomJS tests should fail with false condition:
-</span><span style="color:#75715e">//      Uncaught Error: Uncaught AssertionError: false == true
-</span></code></pre></div><p>Another issue, more pleasant, was <a href="http://es6-features.org/">ES6</a> support. It
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;should fail with false condition&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">done</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">done</span>();
+</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//     1) should fail with false condition
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// [Error: AssertionError]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   0 passing (23ms)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   1 failing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   1) PhantomJS tests should fail with false condition:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      Uncaught Error: Uncaught AssertionError: false == true
+</span></span></span></code></pre></div><p>Another issue, more pleasant, was <a href="http://es6-features.org/">ES6</a> support. It
 was really frustrating to discover that I accidentally used <code>let</code> or
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign</code></a>
 or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer">shorthand Object
@@ -222,40 +222,40 @@ initializer</a>
 somewhere inside a component&rsquo;s code. In PhantomJS, it <a href="https://stackoverflow.com/questions/29736114/how-to-use-es6-with-phantomjs">broke the entire
 test</a>
 silently, without showing related errors.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- component code --&gt;</span>
-&lt;<span style="color:#f92672">dom-module</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meh-meh&#34;</span>&gt;
-    &lt;<span style="color:#f92672">template</span>&gt;
-        &lt;<span style="color:#f92672">div</span>&gt;
-            {{ item }}
-        &lt;/<span style="color:#f92672">div</span>&gt;
-    &lt;/<span style="color:#f92672">template</span>&gt;
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
-        <span style="color:#a6e22e">Polymer</span>({
-            <span style="color:#a6e22e">is</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;meh-meh&#39;</span>,
-
-            <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">item</span><span style="color:#f92672">:</span> {
-                    <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
-                    <span style="color:#75715e">// note the &#39;let&#39; (es2015 syntax)
-</span><span style="color:#75715e"></span>                        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">thing</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;thing&#39;</span>;
-                        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">thing</span>;
-                    },
-                },
-            },
-        });
-    &lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">dom-module</span>&gt;
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// test code
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">it</span>.<span style="color:#a6e22e">only</span>(<span style="color:#e6db74">&#39;should have el.$ object&#39;</span>, <span style="color:#66d9ef">function</span>() {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;meh-meh&#39;</span>);
-    <span style="color:#a6e22e">el</span>[<span style="color:#e6db74">&#39;item&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;an item&#39;</span>;
-    document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">el</span>);
-
-    <span style="color:#75715e">// $ is created by Polymer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">$</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>;
-    <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
-});
-</code></pre></div><p>In PhantomJS this test failed. In headless chrome, it worked fine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- component code --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">dom-module</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meh-meh&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            {{ item }}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Polymer</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">is</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;meh-meh&#39;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">properties</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">item</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// note the &#39;let&#39; (es2015 syntax)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">thing</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;thing&#39;</span>;
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">thing</span>;
+</span></span><span style="display:flex;"><span>                    },
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">dom-module</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// test code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">it</span>.<span style="color:#a6e22e">only</span>(<span style="color:#e6db74">&#39;should have el.$ object&#39;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;meh-meh&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">el</span>[<span style="color:#e6db74">&#39;item&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;an item&#39;</span>;
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">el</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// $ is created by Polymer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">$</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">condition</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>In PhantomJS this test failed. In headless chrome, it worked fine.</p>
 <p>The move from PhantomJS to headless chrome for UI testing enabled us to
 consider using ES6 for our client side code.  It gave us an indication that
 something was wrong with our existing tests. It made client side tests faster.
@@ -382,7 +382,7 @@ small change in <code>package.json</code>.</p>
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://fedorov.dev/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
+	<script src="https://fedorov.dev/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js" integrity="sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

@@ -6,7 +6,16 @@
     <description>Recent content in go on Yury Fedorov (@orlangure)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Jun 2021 17:38:33 +0000</lastBuildDate><atom:link href="https://fedorov.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Nov 2022 18:19:36 +0200</lastBuildDate><atom:link href="https://fedorov.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go: code coverage of the current diff</title>
+      <link>https://fedorov.dev/posts/golang-git-diff-code-coverage/</link>
+      <pubDate>Sat, 05 Nov 2022 18:19:36 +0200</pubDate>
+      
+      <guid>https://fedorov.dev/posts/golang-git-diff-code-coverage/</guid>
+      <description>Every time I write tests in my Go projects, I use code coverage to be completely sure I don&amp;rsquo;t skip important parts that I intended to test. For viewing the reports, depending on the situation, I use either the built-in coverage reports in Neovim (powered by vim-go plugin), or for more complex cases – gocovsh.</description>
+    </item>
+    
     <item>
       <title>Github Actions: setting up Docker on macOS</title>
       <link>https://fedorov.dev/posts/2021-06-04-github-actions-macos-docker-gnomock/</link>

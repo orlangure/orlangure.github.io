@@ -2,10 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fedorov.dev/tags/coverage/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/go/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
     <loc>https://fedorov.dev/posts/golang-git-diff-code-coverage/</loc>
     <lastmod>2022-11-05T18:19:36+02:00</lastmod>
   </url><url>
+    <loc>https://fedorov.dev/tags/gocovsh/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/oss/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
     <loc>https://fedorov.dev/posts/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/</loc>
+    <lastmod>2022-11-05T18:19:36+02:00</lastmod>
+  </url><url>
+    <loc>https://fedorov.dev/tags/testing/</loc>
     <lastmod>2022-11-05T18:19:36+02:00</lastmod>
   </url><url>
     <loc>https://fedorov.dev/</loc>
@@ -23,19 +41,7 @@
     <loc>https://fedorov.dev/tags/gnomock/</loc>
     <lastmod>2021-06-04T17:38:33+00:00</lastmod>
   </url><url>
-    <loc>https://fedorov.dev/tags/go/</loc>
-    <lastmod>2021-06-04T17:38:33+00:00</lastmod>
-  </url><url>
     <loc>https://fedorov.dev/tags/integration-testing/</loc>
-    <lastmod>2021-06-04T17:38:33+00:00</lastmod>
-  </url><url>
-    <loc>https://fedorov.dev/tags/oss/</loc>
-    <lastmod>2021-06-04T17:38:33+00:00</lastmod>
-  </url><url>
-    <loc>https://fedorov.dev/tags/</loc>
-    <lastmod>2021-06-04T17:38:33+00:00</lastmod>
-  </url><url>
-    <loc>https://fedorov.dev/tags/testing/</loc>
     <lastmod>2021-06-04T17:38:33+00:00</lastmod>
   </url><url>
     <loc>https://fedorov.dev/tags/docker/</loc>
@@ -59,13 +65,7 @@
     <loc>https://fedorov.dev/posts/2020-06-27-golang-end-to-end-test-coverage/</loc>
     <lastmod>2020-06-27T23:39:50+00:00</lastmod>
   </url><url>
-    <loc>https://fedorov.dev/tags/coverage/</loc>
-    <lastmod>2020-06-27T23:39:50+00:00</lastmod>
-  </url><url>
     <loc>https://fedorov.dev/tags/end-to-end-testing/</loc>
-    <lastmod>2020-06-27T23:39:50+00:00</lastmod>
-  </url><url>
-    <loc>https://fedorov.dev/tags/gocovsh/</loc>
     <lastmod>2020-06-27T23:39:50+00:00</lastmod>
   </url><url>
     <loc>https://fedorov.dev/tags/aws/</loc>
